@@ -30,8 +30,15 @@
     justify-self: center;
     width: 400px;
     height:300px;
+    display: grid;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    background: bisque;
+    opacity: 0.9;
+    color: black
 }
 
 .update-box input{
-    
+
 }

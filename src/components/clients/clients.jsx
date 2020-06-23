@@ -4,7 +4,6 @@ import clientsData from '../../data'
 // inject("ClientsDATA")
 import StickyHeadTable from './clientsTable'
 import '../styles/clientsPage.css'
-import UpdateClient from './updateClient';
 
 const comp1 =  (observer((props) => {
 
@@ -23,7 +22,6 @@ const comp1 =  (observer((props) => {
             </div>
             <div id="clients-table">
                 <StickyHeadTable />
-                {/* <UpdateClient /> */}
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clientsData from '../../data'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -11,7 +11,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import DoneIcon from '@material-ui/icons/Done';
 import CloseIcon from '@material-ui/icons/Close';
-
+import UpdateClient from './updateClient';
 
 function GetFormattedDate(date) {
     var todayTime = new Date(date)
@@ -81,53 +81,61 @@ export default function StickyHeadTable() {
   };
 
   const getUserData = (user) => {
-    alert("This user is: " + user.name + ' ' + user.surName + user.id)
+    setClient(user)
+    setUpdateClientTab(true)
+    // alert("This user is: " + user.name + ' ' + user.surName + user.id)
   }
 
+  const [updateClientTab , setUpdateClientTab] = useState(false)
+  const [client, setClient] = useState('')
+
   return (
-    <Paper className={classes.root} id="table">
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-              return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={()=>getUserData(row)}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <TableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 50, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+    <div id="full-table">
+      <Paper className={classes.root} id="table">
+        <TableContainer className={classes.container}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={()=>getUserData(row)}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number' ? column.format(value) : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 50, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab}/> : null }
+    </div>
   );
 }
