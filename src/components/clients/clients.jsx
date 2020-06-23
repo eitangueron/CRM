@@ -2,7 +2,7 @@ import React from 'react';
 import { observer, inject } from 'mobx-react'
 import clientsData from '../../data'
 // inject("ClientsDATA")
-import StickyHeadTable from './table'
+import StickyHeadTable from './clientsTable'
 import '../styles/clientsPage.css'
 import UpdateClient from './updateClient';
 
@@ -22,8 +22,8 @@ const comp1 =  (observer((props) => {
                 </select>
             </div>
             <div id="clients-table">
-                {/* <StickyHeadTable /> */}
-                <UpdateClient />
+                <StickyHeadTable />
+                {/* <UpdateClient /> */}
             </div>
         </div>
     )

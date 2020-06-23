@@ -50,6 +50,7 @@ function createData(client) {
     email:client.email, 
     sold: client.sold ? <DoneIcon/> : <CloseIcon />, 
     owner:client.owner, 
+    id:client._id
     };
 }
 
@@ -79,6 +80,10 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
+  const getUserData = (user) => {
+    alert("This user is: " + user.name + ' ' + user.surName + user.id)
+  }
+
   return (
     <Paper className={classes.root} id="table">
       <TableContainer className={classes.container}>
@@ -99,7 +104,7 @@ export default function StickyHeadTable() {
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={()=>getUserData(row)}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
