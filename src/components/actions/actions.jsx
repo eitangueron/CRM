@@ -1,11 +1,12 @@
 import React from 'react';
 
-const App = (props) => {
+const comp2 = (props) => {
     
     return (
        <div>
+           Actions
        </div>
     )
 }
         
-export default App;
+export default comp2;

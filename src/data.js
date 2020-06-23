@@ -1,4 +1,4 @@
-[
+const clientsData = [
     {
       "_id": "5b9f48a2406b2cd74c55c663",
       "name": "Perkins Cunningham",
@@ -7590,3 +7590,5 @@
       "country": "France"
     }
   ]
+
+export default clientsData

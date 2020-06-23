@@ -9,7 +9,7 @@ import { Provider } from 'mobx-react'
 
 // const store = new Store()
 
-// const stores = {store}
+const stores = {}   //insert stores here
 
 ReactDOM.render(<Provider {...stores}><App /></Provider>,document.getElementById('root')
 );
