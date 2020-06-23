@@ -18,3 +18,20 @@
     padding: 5px;
     margin-right: 5px;
 }
+
+/* .makeStyles-root-4{
+    border: solid black 2px
+} */
+
+
+.update-box{
+    border: solid black 2px;
+    align-self: center;
+    justify-self: center;
+    width: 400px;
+    height:300px;
+}
+
+.update-box input{
+    
+}

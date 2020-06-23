@@ -22,7 +22,7 @@ const comp1 =  (observer((props) => {
                 </select>
             </div>
             <div id="clients-table">
-                <StickyHeadTable />
+                {/* <StickyHeadTable /> */}
                 <UpdateClient />
             </div>
         </div>
