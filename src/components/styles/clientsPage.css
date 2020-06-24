@@ -8,6 +8,10 @@
     margin-top: 1%;
 }
 
+#full-table{
+    display: grid;
+}
+
 #filter-bar{
     display: flex;
     margin-top: 1%;
@@ -28,17 +32,28 @@
     border: solid black 2px;
     align-self: center;
     justify-self: center;
-    width: 400px;
-    height:300px;
+    width: 33vw;
+    height:50vh;
     display: grid;
     position: absolute;
-    top: 30%;
-    left: 30%;
+    top: 25vh;
+    left: 33vw ;
+    /* calc(100vh - 400px); */
     background: bisque;
     opacity: 0.9;
     color: black
 }
 
-.update-box input{
+.update-box svg{
+    cursor: pointer;
+    background-color: white;
+}
 
+.update-box input{
+    width: 90%;
+    justify-self: center;
+}
+
+.delete-button{
+    cursor: pointer;
 }

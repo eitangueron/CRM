@@ -12,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import DoneIcon from '@material-ui/icons/Done';
 import CloseIcon from '@material-ui/icons/Close';
 import UpdateClient from './updateClient';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 function GetFormattedDate(date) {
     var todayTime = new Date(date)
@@ -29,6 +30,7 @@ const columns = [
     { id: 'email', label: 'Email', minWidth: '10%' },
     { id: 'sold', label: 'Sold', minWidth: '10%' },
     { id: 'owner', label: 'Owner', minWidth: '10%' },
+    { id: 'delete', label: '', minWidth: '10%' },
   ];
 
 
@@ -38,8 +40,11 @@ function createData(client) {
     let surname = ''
     for(let n of name){
         if(n !== name[0]){
+          if(n!==name[1]){
+            surname+=' '
+          }
             surname+=n
-        }
+          }
     }
 
     return { 
@@ -47,10 +52,12 @@ function createData(client) {
     surName:surname,                
     country:client.country, 
     firstContact:GetFormattedDate(client.firstContact), 
-    email:client.email, 
+    email:client.emailType ? client.emailType : '-', 
     sold: client.sold ? <DoneIcon/> : <CloseIcon />, 
     owner:client.owner, 
-    id:client._id
+    id:client._id,
+    key:client._id,
+    delete: <DeleteForeverIcon className="delete-button" onClick={()=>alert(client._id)}/>
     };
 }
 
@@ -81,8 +88,8 @@ export default function StickyHeadTable() {
   };
 
   const getUserData = (user) => {
-    setClient(user)
-    setUpdateClientTab(true)
+      setClient(user)
+      setUpdateClientTab(true)
     // alert("This user is: " + user.name + ' ' + user.surName + user.id)
   }
 
@@ -94,7 +101,7 @@ export default function StickyHeadTable() {
       <Paper className={classes.root} id="table">
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table">
-            <TableHead>
+            <TableHead >
               <TableRow>
                 {columns.map((column) => (
                   <TableCell
@@ -110,11 +117,11 @@ export default function StickyHeadTable() {
             <TableBody>
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={()=>getUserData(row)}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell key={column.id} align={column.align} onClick={column.id !=='delete' ? ()=>getUserData(row):null}>
                           {column.format && typeof value === 'number' ? column.format(value) : value}
                         </TableCell>
                       );
@@ -126,7 +133,7 @@ export default function StickyHeadTable() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[10, 25, 50, 100]}
+          rowsPerPageOptions={[10, 25, 50, 100, 250]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -135,7 +142,7 @@ export default function StickyHeadTable() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab}/> : null }
+      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab} setUpdateClientTab={setUpdateClientTab}/> : null }
     </div>
   );
 }
