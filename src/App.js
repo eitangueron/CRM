@@ -4,8 +4,8 @@ import React from 'react';
 import { observer, inject } from 'mobx-react'
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import comp1 from "./components/clients/clients"
-import comp2 from './components/actions/actions';
+import clientsPage from "./components/clients/clients"
+import actionsPage from './components/actions/actions';
 import comp3 from './components/analytics/analytics';
 import ButtonAppBar from './navBar';
 
@@ -18,8 +18,8 @@ const App = observer((props) => {
            <ButtonAppBar />
            </div>
             <div id="routes">
-              <Route path="/clients" exact component={comp1} />
-              <Route path="/actions" exact component={comp2} />
+              <Route path="/clients" exact component={clientsPage} />
+              <Route path="/actions" exact component={actionsPage} />
               <Route path="/analytics" exact component={comp3} />
             </div>
          </Router>

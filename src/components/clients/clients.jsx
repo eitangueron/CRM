@@ -5,7 +5,7 @@ import { observer, inject } from 'mobx-react'
 import StickyHeadTable from './clientsTable'
 import '../styles/clientsPage.css'
 
-const comp1 =  inject('clientsStore')(observer((props) => {
+const clientsPage =  inject('clientsStore')(observer((props) => {
     
     const clientsStore = props.clientsStore
 
@@ -30,6 +30,6 @@ const comp1 =  inject('clientsStore')(observer((props) => {
 
 }))
         
-export default comp1;
+export default clientsPage;
 
 

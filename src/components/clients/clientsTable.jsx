@@ -11,7 +11,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import DoneIcon from '@material-ui/icons/Done';
 import CloseIcon from '@material-ui/icons/Close';
-import UpdateClient from './updateClient';
+import UpdateClient from './updateClientTab';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import {observer, inject} from 'mobx-react'
 

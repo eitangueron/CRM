@@ -41,10 +41,9 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
     return (
        <div>
             <h3>Add New Client:</h3>
-            <TextField id="standard-basic" label="First Name" value={firstNameInput} onChange={(e)=>setFirstNameInput(e.target.value)}/> <br/>
-            <TextField id="standard-basic" label="Sur Name" value={surNameInput} onChange={(e)=>setSurNameInput(e.target.value)}/> <br/>
-            <TextField id="standard-basic" label="Country" value={countryInput} onChange={(e)=>setCountryInput(e.target.value)}/> <br/>
-            {/* <TextField id="standard-basic" label="Owner" value={ownerInput} onChange={(e)=>setOwnerInput(e.target.value)}/> <br/> */}
+            <TextField id="standard-basic" type="text" label="First Name" value={firstNameInput} onChange={(e)=>setFirstNameInput(e.target.value)}/> <br/>
+            <TextField id="standard-basic" type="text" label="Sur Name" value={surNameInput} onChange={(e)=>setSurNameInput(e.target.value)}/> <br/>
+            <TextField id="standard-basic" type="text" label="Country" value={countryInput} onChange={(e)=>setCountryInput(e.target.value)}/> <br/>
 
             <FormControl className={classes.formControl}>
             <InputLabel htmlFor="age-native-simple">Owner</InputLabel>
