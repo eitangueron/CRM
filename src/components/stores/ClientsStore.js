@@ -41,7 +41,7 @@ export class ClientsStore {
     @action setFilterVal (val){
         this.filterVal = val
     }
-
+// eslint-disable-next-line
      @computed get getFilteredClients(){
          const basic = ['name','surName','country']
          if(basic.includes(this.filterCategory)){

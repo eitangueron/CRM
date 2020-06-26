@@ -46,9 +46,9 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
             <TextField id="standard-basic" type="text" label="Country" value={countryInput} onChange={(e)=>setCountryInput(e.target.value)}/> <br/>
 
             <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="age-native-simple">Owner</InputLabel>
+            <InputLabel htmlFor="owner-input">Owner</InputLabel>
                 <Select native value={ownerInput} onChange={(e)=>setOwnerInput(e.target.value)} 
-                inputProps={ {name: 'age',id: 'age-native-simple',}}>
+                inputProps={ {name: 'owner-input',id: 'owner-input'}}>
                     <option aria-label="None" value="" />
                     {owners.map(o => <option value={o}>{o}</option>)}
                 </Select>

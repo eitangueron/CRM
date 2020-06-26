@@ -17,7 +17,6 @@ const clientsPage =  inject('clientsStore')(observer((props) => {
                     <option value="name">Name</option>
                     <option value="surName">Sur Name</option>
                     <option value="country">Country</option>
-                    <option value="firstContact">first contact</option>
                     <option value="emailType">Email</option>
                     <option value="sold">Sold</option>
                 </select>

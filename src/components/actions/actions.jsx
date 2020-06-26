@@ -1,8 +1,8 @@
 import React from 'react';
 import AddNewAclient from './addNewClient';
-import { observer, inject } from 'mobx-react'
+import { observer } from 'mobx-react'
 import UpdateNewClient from './updateNewClient';
-
+import '../styles/actionsPage.css'
 
 const actionsPage = observer((props) => {
     
@@ -10,7 +10,7 @@ const actionsPage = observer((props) => {
        <div>
            <UpdateNewClient />
            <hr/>
-           {/* <AddNewAclient /> */}
+           <AddNewAclient />
        </div>
     )
 })
