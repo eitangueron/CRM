@@ -1,12 +1,17 @@
 import React from 'react';
+import AddNewAclient from './addNewClient';
+import UpdateClient from '../clients/updateClient';
+import { observer, inject } from 'mobx-react'
 
-const comp2 = (props) => {
+
+const actionsPage = observer((props) => {
     
     return (
        <div>
-           Actions
+           {/* <UpdateClient /> */}
+           <AddNewAclient />
        </div>
     )
-}
+})
         
-export default comp2;
+export default actionsPage;

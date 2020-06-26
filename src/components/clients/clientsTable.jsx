@@ -38,28 +38,17 @@ const columns = [
 
 
 function createData(client) {
-    const name = client.name.split(' ')
-    let surname = ''
-    for(let n of name){
-        if(n !== name[0]){
-          if(n!==name[1]){
-            surname+=' '
-          }
-            surname+=n
-          }
-    }
-
     return { 
-    name:name[0],
-    surName:surname,                
-    country:client.country, 
-    firstContact:GetFormattedDate(client.firstContact), 
-    email:client.emailType ? client.emailType : '-', 
-    sold: client.sold ? <DoneIcon/> : <CloseIcon />, 
-    owner:client.owner, 
-    id:client._id,
-    key:client._id,
-    delete: <DeleteForeverIcon className="delete-button" onClick={()=>alert(client._id)}/>
+      name:client.name,
+      surName:client.surName,                
+      country:client.country, 
+      firstContact:GetFormattedDate(client.firstContact), 
+      email:client.emailType ? client.emailType : '-', 
+      sold: client.sold ? <DoneIcon/> : <CloseIcon />, 
+      owner:client.owner, 
+      id:client._id,
+      key:client._id,
+      delete: <DeleteForeverIcon className="delete-button" onClick={()=>alert(client._id)}/>
     };
 }
 

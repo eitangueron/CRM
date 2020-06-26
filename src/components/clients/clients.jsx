@@ -18,7 +18,7 @@ const comp1 =  inject('clientsStore')(observer((props) => {
                     <option value="surName">Sur Name</option>
                     <option value="country">Country</option>
                     <option value="firstContact">first contact</option>
-                    <option value="email">Email</option>
+                    <option value="emailType">Email</option>
                     <option value="sold">Sold</option>
                 </select>
             </div>
