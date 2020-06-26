@@ -1,17 +1,19 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react'
-import clientsData from '../../data'
+// import clientsData from '../../data'
 // inject("ClientsDATA")
 import StickyHeadTable from './clientsTable'
 import '../styles/clientsPage.css'
 
-const comp1 =  (observer((props) => {
+const comp1 =  inject('clientsStore')(observer((props) => {
+    
+    const clientsStore = props.clientsStore
 
     return (
         <div id="clients-page">
             <div id="filter-bar">
-                <input type="text" placeholder="search" id="filter-search-bar"/>
-                <select name="category" id="filter-dropdown-menu">
+                <input type="text" placeholder="search" id="filter-search-bar" value={clientsStore.filterVal} onChange={(e)=>clientsStore.setFilterVal(e.target.value)}/>
+                <select name="category" id="filter-dropdown-menu" value={clientsStore.filterCategory} onChange={(e)=>clientsStore.setFilterCategory(e.target.value)}>
                     <option value="name">Name</option>
                     <option value="surName">Sur Name</option>
                     <option value="country">Country</option>

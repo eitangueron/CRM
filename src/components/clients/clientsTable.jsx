@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import clientsData from '../../data'
+// import clientsData from '../../data'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -13,6 +13,8 @@ import DoneIcon from '@material-ui/icons/Done';
 import CloseIcon from '@material-ui/icons/Close';
 import UpdateClient from './updateClient';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import {observer, inject} from 'mobx-react'
+
 
 function GetFormattedDate(date) {
     var todayTime = new Date(date)
@@ -61,8 +63,6 @@ function createData(client) {
     };
 }
 
-const rows = clientsData.map( c => createData(c))
-
 
 const useStyles = makeStyles({
   root: {
@@ -73,7 +73,17 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+
+
+
+const StickyHeadTable = inject('clientsStore')(observer((props) => {
+
+  const clientsStore = props.clientsStore
+
+  const clientsDataFiltered = clientsStore.getFilteredClients
+
+  const rows = clientsDataFiltered.map( c => createData(c))
+
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -90,7 +100,6 @@ export default function StickyHeadTable() {
   const getUserData = (user) => {
       setClient(user)
       setUpdateClientTab(true)
-    // alert("This user is: " + user.name + ' ' + user.surName + user.id)
   }
 
   const [updateClientTab , setUpdateClientTab] = useState(false)
@@ -142,7 +151,9 @@ export default function StickyHeadTable() {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab} setUpdateClientTab={setUpdateClientTab}/> : null }
+      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab}/> : null }
     </div>
   );
-}
+}))
+
+export default StickyHeadTable
