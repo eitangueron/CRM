@@ -1,0 +1,73 @@
+#add-new-client-box{
+    display: grid;
+    margin-left: 2%;
+    width: 25%;
+}
+
+#add-new-client-box h2{
+    text-decoration: underline;
+    margin-left: -5%;
+}
+
+#add-new-client-box button{
+    background: #1a76d2;
+    width: 70%;
+    justify-self: center;
+    margin-bottom: 5%;
+}
+
+#update-user-info-container {
+    margin-left: 2%;
+    display: grid;
+    grid-template-areas:
+        "n n n"
+        "o e s";
+    margin-bottom: 2%;
+}
+
+.MuiAutocomplete-endAdornment{
+    display: none;
+}
+
+#update-user-info-container button{
+    background: #1a76d2;
+}
+
+#pick-client-name-box{
+    grid-area:n;
+}
+
+#pick-client-name-box h2{
+    margin-left: -1%;
+    text-decoration: underline;
+}
+
+#transfer-owner-box{
+    grid-area:o;
+}
+
+#send-email-box{
+    grid-area:e;
+}
+
+#declare-sale-box{
+    grid-area:s;
+}
+
+.update-user-info-actionsPage-box {
+    display: grid;
+    width: 50%;
+}
+
+.update-user-info-actionsPage-box h3{
+    margin-left: -3%;
+    text-decoration: underline;
+}
+
+.update-user-info-actionsPage-box button{
+    background: #1a76d2;
+    margin-top: 4px;
+    height: 45px;
+    width: 85%;
+} 
+

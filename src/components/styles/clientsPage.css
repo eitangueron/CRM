@@ -39,7 +39,7 @@
     top: 25vh;
     left: 33vw ;
     /* calc(100vh - 400px); */
-    background: bisque;
+    background: aliceblue;
     opacity: 0.9;
     color: black
 }
@@ -52,6 +52,10 @@
 .update-box input{
     width: 90%;
     justify-self: center;
+}
+
+.update-box button{
+    background: #1a76d2;
 }
 
 .delete-button{
