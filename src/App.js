@@ -6,8 +6,8 @@ import { observer, inject } from 'mobx-react'
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import clientsPage from "./components/clients/clients"
 import actionsPage from './components/actions/actions';
-import comp3 from './components/analytics/analytics';
-import ButtonAppBar from './navBar';
+import analyticsPage from './components/analytics/analytics';
+import ButtonAppBar from './components/navBar/navBar';
 
 const App = observer((props) => {
     
@@ -20,7 +20,7 @@ const App = observer((props) => {
             <div id="routes">
               <Route path="/clients" exact component={clientsPage} />
               <Route path="/actions" exact component={actionsPage} />
-              <Route path="/analytics" exact component={comp3} />
+              <Route path="/analytics" exact component={analyticsPage} />
             </div>
          </Router>
        </div>

@@ -1,12 +1,13 @@
 import React from 'react';
+import AllTheBadges from './badges';
 
-const comp3 = (props) => {
+const analyticsPage = (props) => {
     
     return (
        <div>
-           Analytics
+           <AllTheBadges/>
        </div>
     )
 }
         
-export default comp3;
+export default analyticsPage;
