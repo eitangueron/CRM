@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -32,18 +32,23 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
 
+  const [currentPage, setCurrentPage] = useState(document.location.pathname)
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.container}>
         <Toolbar>
-            <Link to="/clients">
-                <Typography variant="h6" className={classes.title}>Clients</Typography>
+            <Link to="/clients" onClick={()=>setCurrentPage('/clients')}>
+                <Typography variant="h6" className={classes.title} 
+                style={currentPage==='/clients' ? {color:'gold'}:null }>Clients</Typography>
             </Link>
-            <Link to="/actions">
-            <Typography variant="h6" className={classes.title}>Actions</Typography>
+            <Link to="/actions" onClick={()=>setCurrentPage("/actions")}>
+              <Typography variant="h6" className={classes.title}
+              style={currentPage==='/actions' ? {color:'gold'}:null }>Actions</Typography>
             </Link>
-            <Link to="/analytics">
-            <Typography variant="h6" className={classes.title}>Analytics</Typography>
+            <Link to="/analytics" onClick={()=>setCurrentPage("/analytics")}>
+            <Typography variant="h6" className={classes.title}
+            style={currentPage==='/analytics' ? {color:'gold'}:null }>Analytics</Typography>
             </Link>
         </Toolbar>
       </AppBar>
