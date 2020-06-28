@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { observer, inject } from 'mobx-react'
 // import clientsData from '../../data'
 // inject("ClientsDATA")
@@ -8,6 +8,10 @@ import '../styles/clientsPage.css'
 const clientsPage =  inject('clientsStore')(observer((props) => {
     
     const clientsStore = props.clientsStore
+
+    useEffect(() => {
+        clientsStore.getClientsFromDB()
+    },[])
 
     return (
         <div id="clients-page">

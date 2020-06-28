@@ -43,7 +43,7 @@ function createData(client) {
       surName:client.surName,                
       country:client.country, 
       firstContact:GetFormattedDate(client.firstContact), 
-      email:client.emailType ? client.emailType : '-', 
+      email:client.emailType!=='null' ? client.emailType : '-', 
       sold: client.sold ? <DoneIcon/> : <CloseIcon />, 
       owner:client.owner, 
       id:client._id,
@@ -140,7 +140,7 @@ const StickyHeadTable = inject('clientsStore')(observer((props) => {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab}/> : null }
+      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab} clientsStore={clientsStore}/> : null }
     </div>
   );
 }))

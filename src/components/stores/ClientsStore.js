@@ -1,20 +1,19 @@
 import { observable, action, computed } from 'mobx'
 import clientsData from '../../data'
+const axios = require('axios')
 
 export class ClientsStore {
     
     constructor() {
-       this.clients = this.modifyClients(clientsData)
+       this.clients = []
        this.filterCategory = 'name'
        this.filterVal = ''
     }
 
-    modifyClients(arr){
-        arr.forEach( c => c['surName']=this.getSurName(c.name))
-        arr.forEach( c => c.name=c.name.split(' ')[0])
-        return arr
-    }
-    
+    @observable clients
+    @observable filterCategory
+    @observable filterVal
+
     getSurName(fullName){
         const name = fullName.split(' ')
         let surname = ''
@@ -29,10 +28,24 @@ export class ClientsStore {
 
         return surname
     } 
+    
+    modifyClients(arr){
+        arr.forEach( c => {
+            c['surName']=this.getSurName(c.name)
+            c.name=c.name.split(' ')[0]
+            c.sold===1 ? c.sold = true : c.sold=false
+        })
+        //arr.forEach( c => c.name=c.name.split(' ')[0])
+        //arr.forEach(c => )
+        return arr
+    }
+    
+    @action async getClientsFromDB (){
+        axios.get('http://localhost:4000/clients').then(res => {
 
-    @observable clients
-    @observable filterCategory
-    @observable filterVal
+            this.clients = this.modifyClients(res.data)
+        })
+    }
 
     @action setFilterCategory (category){
         this.filterCategory = category
@@ -40,6 +53,13 @@ export class ClientsStore {
      
     @action setFilterVal (val){
         this.filterVal = val
+    }
+
+    @action updateClient (clientNewInfo){
+        const client = this.clients.find(c => c._id === clientNewInfo.id)
+        client.name = clientNewInfo.name.split()[0]
+        client.surName = getSurName(clientNewInfo.name)
+        clients.country = clientNewInfo.country
     }
 // eslint-disable-next-line
      @computed get getFilteredClients(){
@@ -64,4 +84,7 @@ export class ClientsStore {
         this.clients.forEach( c => !owners[c.owner] ? owners[c.owner]=c.owner : null)
         return Object.values(owners)
      }
+
+
  }
+

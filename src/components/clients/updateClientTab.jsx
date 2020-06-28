@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
+const axios = require('axios')
+const capitalize = require('capitalize')
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,8 +39,17 @@ export default function UpdateClient(props) {
     const [surNameInputBar, setSurNameInputBar] = useState(props.client.surName)
     const [countryInputBar, setCountryInputBar] = useState(props.client.country)
     
-    const updateClientDB = (clientId) => {
-        alert(`updated ${clientId} with name ${nameInputBar} surname ${surNameInputBar} country ${countryInputBar}`) //maybe all ?
+
+    const updateClientDB = async (clientId) => {
+        const name = capitalize(nameInputBar) + ' ' + capitalize(surNameInputBar)
+        await axios.put(`http://localhost:4000/clients/${clientId}/${name}/${capitalize(countryInputBar)}`)
+        .then( res => {
+            clientsStore.updateClient(res.data)
+            // alert(res.data)
+            alert(`Updated client successfully!\n${req.data.name} from ${req.data.country}.\nID:${req.data.id}`)
+
+        })
+        // alert(`updated ${clientId} with name ${nameInputBar} surname ${surNameInputBar} country ${countryInputBar}`) //maybe all ?
         props.setUpdateClientTab(false)
     }
 
