@@ -61,7 +61,12 @@ export class ClientsStore {
         client.surName = this.getSurName(clientNewInfo.name)
         client.country = clientNewInfo.country
     }
-    
+
+    @action deleteClient(clientID){
+        const clientIndex = this.clients.findIndex(c => c._id === clientID)
+        this.clients.splice(clientIndex,1)
+    }
+
 // eslint-disable-next-line
      @computed get getFilteredClients(){
          const basic = ['name','surName','country']

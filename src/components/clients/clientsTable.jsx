@@ -14,6 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import UpdateClient from './updateClientTab';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import {observer, inject} from 'mobx-react'
+import axios from 'axios';
 
 
 function GetFormattedDate(date) {
@@ -21,7 +22,7 @@ function GetFormattedDate(date) {
     var month = todayTime.getMonth() + 1;
     var day = todayTime.getDate();
     var year = todayTime.getFullYear();
-    return month + "/" + day + "/" + year;
+    return day + "/" + month + "/" + year;
 }
 
 const columns = [
@@ -36,23 +37,6 @@ const columns = [
   ];
 
 
-
-function createData(client) {
-    return { 
-      name:client.name,
-      surName:client.surName,                
-      country:client.country, 
-      firstContact:GetFormattedDate(client.firstContact), 
-      email:client.emailType!=='null' ? client.emailType : '-', 
-      sold: client.sold ? <DoneIcon/> : <CloseIcon />, 
-      owner:client.owner, 
-      id:client._id,
-      key:client._id,
-      delete: <DeleteForeverIcon className="delete-button" onClick={()=>alert(client._id)}/>
-    };
-}
-
-
 const useStyles = makeStyles({
   root: {
     width: '95vw',
@@ -62,6 +46,19 @@ const useStyles = makeStyles({
   },
 });
 
+const compare = (a, b) => {
+  // Use toUpperCase() to ignore character casing
+  const nameA = a.name.toUpperCase();
+  const nameB = b.name.toUpperCase();
+  
+  let comparison = 0;
+  if (nameA > nameB) {
+      comparison = 1;
+  } else if (nameA < nameB) {
+      comparison = -1;
+  }
+  return comparison;
+}
 
 
 
@@ -71,7 +68,33 @@ const StickyHeadTable = inject('clientsStore')(observer((props) => {
 
   const clientsDataFiltered = clientsStore.getFilteredClients
 
-  const rows = clientsDataFiltered.map( c => createData(c))
+  const deleteClient = async (clientID) => {
+    await axios.delete(`http://localhost:4000/clients/${clientID}`).then(res => {
+      if(res.data.status === 'success'){
+        clientsStore.deleteClient(clientID)
+        alert('Deleted Successfully!')
+      } else {
+        alert(`Seems to be an error...\n${res.data}`)
+      }
+    })
+  }
+  
+  const createData = (client) => {
+      return { 
+        name:client.name,
+        surName:client.surName,                
+        country:client.country, 
+        firstContact:GetFormattedDate(client.firstContact), 
+        email:client.emailType!=='null' ? client.emailType : '-', 
+        sold: client.sold ? <DoneIcon/> : <CloseIcon />, 
+        owner:client.owner, 
+        id:client._id,
+        key:client._id,
+        delete: <DeleteForeverIcon className="delete-button" onClick={()=>deleteClient(client._id)}/>
+      };
+  }
+
+  const rows = clientsDataFiltered.sort(compare).map( c => createData(c))
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);

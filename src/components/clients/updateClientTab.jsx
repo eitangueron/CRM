@@ -42,12 +42,13 @@ export default function UpdateClient(props) {
 
     const updateClientDB = async (clientId) => {
         const name = capitalize(nameInputBar) + ' ' + capitalize(surNameInputBar)
-        await axios.put(`http://localhost:4000/clients/${clientId}/${name}/${capitalize(countryInputBar)}`)
+        const country= capitalize(countryInputBar)
+        await axios.put(`http://localhost:4000/clients/${clientId}/${name}/${country}`)
         .then( res => {
             if(res.data.status === 'success'){
                 props.clientsStore.updateClient(res.data)
                 // alert(res.data)
-                alert(`Updated client successfully!\n${res.data.name} from ${res.data.country}.\nID:${res.data.id}`)
+                alert(`Updated client successfully!\n${res.data.name} from ${country}.\nID: ${res.data.id}`)
             } else {
                 alert(res.data)
             }
