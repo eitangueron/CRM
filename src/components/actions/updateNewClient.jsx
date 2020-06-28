@@ -58,7 +58,7 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
                 <Select native value={ownerInput} onChange={(e)=>setOwnerInput(e.target.value)} 
                     inputProps={ {name: 'owner-input',id: 'owner-input'}}>
                         <option aria-label="None" value="" disabled>*New Owner</option>
-                        {owners.map(o => <option value={o}>{o}</option>)}
+                        {owners.map((o,i) => <option value={o} key={'owner' + i}>{o}</option>)}
                     </Select>
                     <br/>
                     <Button variant="contained" color="primary" onClick={updateOwner}>Transfer Owner!</Button>
@@ -70,7 +70,7 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
                 <Select native value={emailInput} onChange={(e)=>setEmailInput(e.target.value)} 
                     inputProps={ {name: 'email-input',id: 'email-input'}}>
                         <option aria-label="None" value="" disabled>*Email Type</option>
-                        {emailTypes.map(o => <option value={o}>{o}</option>)}
+                        {emailTypes.map((o,i) => <option value={o} key={'email' + i}>{o}</option>)}
                     </Select>
                     <br/>
                     <Button variant="contained" color="primary" onClick={updateEmail}>Send Email!</Button>

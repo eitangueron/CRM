@@ -57,7 +57,7 @@ export class ClientsStore {
 
     @action updateClient (clientNewInfo){
         const client = this.clients.find(c => c._id === clientNewInfo.id)
-        client.name = clientNewInfo.name.split()[0]
+        client.name = clientNewInfo.name.split(' ')[0]
         client.surName = this.getSurName(clientNewInfo.name)
         client.country = clientNewInfo.country
     }

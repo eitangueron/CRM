@@ -41,19 +41,22 @@ export default function UpdateClient(props) {
     
 
     const updateClientDB = async (clientId) => {
-        const name = capitalize(nameInputBar) + ' ' + capitalize(surNameInputBar)
-        const country= capitalize(countryInputBar)
-        await axios.put(`http://localhost:4000/clients/${clientId}/${name}/${country}`)
-        .then( res => {
-            if(res.data.status === 'success'){
-                props.clientsStore.updateClient(res.data)
-                // alert(res.data)
-                alert(`Updated client successfully!\n${res.data.name} from ${country}.\nID: ${res.data.id}`)
-            } else {
-                alert(res.data)
-            }
-        })
-        props.setUpdateClientTab(false)
+        if(nameInputBar && surNameInputBar && countryInputBar){
+            const name = capitalize(nameInputBar) + ' ' + capitalize(surNameInputBar)
+            const country= capitalize(countryInputBar)
+            await axios.put(`http://localhost:4000/clients/${parseInt(clientId)}/${name}/${country}`)
+            .then( res => {
+                if(res.data.status === 'success'){
+                    props.clientsStore.updateClient(res.data)
+                    alert(`Updated client successfully!\n${res.data.name} from ${country}.\nID: ${res.data.id}`)
+                } else {
+                    alert(res.data)
+                }
+            })
+            props.setUpdateClientTab(false)
+        } else {
+            alert('Must enter name, sur name and country!')
+        }
     }
 
   return (

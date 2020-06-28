@@ -6,6 +6,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import { observer, inject } from 'mobx-react'
+import Axios from 'axios';
+const capitalize = require('capitalize')
+const dateformat = require('dateformat')
 
 const AddNewAclient = inject('clientsStore')(observer((props) => {
     
@@ -20,7 +23,22 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
 
     const addUser = () => {
         if(firstNameInput && surNameInput && countryInput && ownerInput){
-            alert(`Added a new user: ${firstNameInput} ${surNameInput} from ${countryInput} to ${ownerInput}`)
+            const name = capitalize(firstNameInput) + ' ' + capitalize(surNameInput)
+            const country = capitalize(countryInput)
+            const owner = capitalize(ownerInput)
+            const date = new Date()
+            Axios.post(`http://localhost:4000/clients/${name}/${country}/${owner}/${dateformat(date,'isoDate')}`).then( res => {
+                if(res.data.status==='success'){
+                    alert('added new user')
+                    setFirstNameInput('')
+                    setSurNameInput('')
+                    setCountryInput('')
+                    setOwnerInput('')
+                    alert(`Added a new user: ${name} from ${country} to ${owner}`)
+                } else {
+                    alert ('seems to be a problem with adding a new client')
+                }
+            })
         } else {
             alert('Please insert all 4 fields!')
         }
@@ -50,7 +68,7 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
                 <Select native value={ownerInput} onChange={(e)=>setOwnerInput(e.target.value)} 
                 inputProps={ {name: 'owner-input',id: 'owner-input'}}>
                     <option aria-label="None" value="" />
-                    {owners.map(o => <option value={o}>{o}</option>)}
+                    {owners.map((o,i) => <option value={o} key={'ownerName'+i}>{o}</option>)}
                 </Select>
             </FormControl>
 

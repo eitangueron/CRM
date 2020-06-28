@@ -7633,7 +7633,7 @@ const clientsData = [
 //   const emailID = await getEmailType(c)
 //   const countryID = await geCountryId(c)
 //   const date = dateFormat(c.firstContact,'isoDate')
-//   await db.query(`INSERT INTO clients VALUES('${c._id}', '${c.name}', '${c.email}','${date}', ${emailID}, ${c.sold}, ${ownerID}, ${countryID})`)
+//   await db.query(`INSERT INTO clients VALUES(null, '${c.name}', '${date}', ${emailID}, ${c.sold}, ${ownerID}, ${countryID})`)
 // })
 
 
