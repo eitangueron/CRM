@@ -123,7 +123,7 @@ const StickyHeadTable = inject('clientsStore')(observer((props) => {
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead >
-              <TableRow>
+              <TableRow key="head-row">
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
@@ -136,9 +136,9 @@ const StickyHeadTable = inject('clientsStore')(observer((props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row,i) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={'row'+i}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
