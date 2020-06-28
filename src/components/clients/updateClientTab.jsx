@@ -44,12 +44,14 @@ export default function UpdateClient(props) {
         const name = capitalize(nameInputBar) + ' ' + capitalize(surNameInputBar)
         await axios.put(`http://localhost:4000/clients/${clientId}/${name}/${capitalize(countryInputBar)}`)
         .then( res => {
-            clientsStore.updateClient(res.data)
-            // alert(res.data)
-            alert(`Updated client successfully!\n${req.data.name} from ${req.data.country}.\nID:${req.data.id}`)
-
+            if(res.data.status === 'success'){
+                props.clientsStore.updateClient(res.data)
+                // alert(res.data)
+                alert(`Updated client successfully!\n${res.data.name} from ${res.data.country}.\nID:${res.data.id}`)
+            } else {
+                alert(res.data)
+            }
         })
-        // alert(`updated ${clientId} with name ${nameInputBar} surname ${surNameInputBar} country ${countryInputBar}`) //maybe all ?
         props.setUpdateClientTab(false)
     }
 

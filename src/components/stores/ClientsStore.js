@@ -58,9 +58,10 @@ export class ClientsStore {
     @action updateClient (clientNewInfo){
         const client = this.clients.find(c => c._id === clientNewInfo.id)
         client.name = clientNewInfo.name.split()[0]
-        client.surName = getSurName(clientNewInfo.name)
-        clients.country = clientNewInfo.country
+        client.surName = this.getSurName(clientNewInfo.name)
+        client.country = clientNewInfo.country
     }
+    
 // eslint-disable-next-line
      @computed get getFilteredClients(){
          const basic = ['name','surName','country']
