@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+const Axios = require('axios')
 
 const UpdateNewClient = inject('clientsStore')(observer((props) => {
     
@@ -17,23 +18,51 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
 
     const updateOwner = () => {
         if(ownerInput && clientName){
-            alert('sent an update command to db')
+            Axios.put(`http://localhost:4000/client/updateOwner/${clientName}/${ownerInput}`).then( res => {
+                console.log(res.data)
+                if(res.data.status === 'success'){
+                    alert(`${clientName} updated!\nMoved to ${ownerInput}`)
+                } else {
+                    alert('seems to have a problem')
+                }
+            }
+                )
         } else {
             alert('pick a new owner or a clients name')
         }
     }
 
     const updateEmail = () => {
+
         if(emailInput && clientName){
-            alert('sent an update command to db')
+            Axios.put(`http://localhost:4000/client/updateOwner/${clientName}/${ownerInput}`).then( res => {
+                console.log(res.data)
+                if(res.data.status === 'success'){
+                    alert(`${clientName} updated!\nMoved to ${ownerInput}`)
+                } else {
+                    alert('seems to have a problem')
+                }
+            }
+                )
         } else {
             alert('pick an email type or a clients name')
         }
+
+
+
+
     }
 
     const declareSale = () => {
         if(clientName){
-            alert('send an update command to db to change sale to true')
+            Axios.put(`http://localhost:4000/client/declareSell/${clientName}`).then( res => {
+                if(res.data.status === 'success'){
+                    alert(`${clientName} updated! Congrats on the sale!`)
+                } else {
+                    alert('seems to have a problem')
+                }
+            }
+                )
         } else {
             alert('pick a client name')
         }
