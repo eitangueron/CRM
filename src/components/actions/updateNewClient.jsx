@@ -35,10 +35,10 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
     const updateEmail = () => {
 
         if(emailInput && clientName){
-            Axios.put(`http://localhost:4000/client/updateOwner/${clientName}/${ownerInput}`).then( res => {
+            Axios.put(`http://localhost:4000/client/sendEmail/${clientName}/${emailInput}`).then( res => {
                 console.log(res.data)
                 if(res.data.status === 'success'){
-                    alert(`${clientName} updated!\nMoved to ${ownerInput}`)
+                    alert(`Successfully sent ${clientName} email from type ${emailInput}`)
                 } else {
                     alert('seems to have a problem')
                 }
