@@ -6,9 +6,9 @@ USE crm_project;
 -- );
 
 CREATE TABLE clients (
-    id VARCHAR(30) NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(20),
-    email VARCHAR(30),
+    -- email VARCHAR(30),
     firstContact DATE,
     emailType INT, 
     sold BOOLEAN,
@@ -46,3 +46,4 @@ CREATE TABLE clients (
 
 
 -- DROP TABLE countries
+

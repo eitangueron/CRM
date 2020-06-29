@@ -36,7 +36,6 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
 
         if(emailInput && clientName){
             Axios.put(`http://localhost:4000/client/sendEmail/${clientName}/${emailInput}`).then( res => {
-                console.log(res.data)
                 if(res.data.status === 'success'){
                     alert(`Successfully sent ${clientName} email from type ${emailInput}`)
                 } else {

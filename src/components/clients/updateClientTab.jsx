@@ -47,7 +47,8 @@ export default function UpdateClient(props) {
             await axios.put(`http://localhost:4000/clients/${parseInt(clientId)}/${name}/${country}`)
             .then( res => {
                 if(res.data.status === 'success'){
-                    props.clientsStore.updateClient(res.data)
+                    const clientData = {id:clientId, name:name, country:country}
+                    props.clientsStore.updateClient(clientData)
                     alert(`Updated client successfully!\n${res.data.name} from ${country}.\nID: ${res.data.id}`)
                 } else {
                     alert(res.data)

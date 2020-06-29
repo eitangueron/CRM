@@ -29,12 +29,11 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
             const date = new Date()
             Axios.post(`http://localhost:4000/clients/${name}/${country}/${owner}/${dateformat(date,'isoDate')}`).then( res => {
                 if(res.data.status==='success'){
-                    alert('added new user')
+                    alert(`Added a new user: ${name} from ${country} to ${owner}`)
                     setFirstNameInput('')
                     setSurNameInput('')
                     setCountryInput('')
                     setOwnerInput('')
-                    alert(`Added a new user: ${name} from ${country} to ${owner}`)
                 } else {
                     alert ('seems to be a problem with adding a new client')
                 }

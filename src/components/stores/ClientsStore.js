@@ -92,5 +92,51 @@ export class ClientsStore {
      }
 
 
+     @computed get getClientsFromMonth(){
+         let numOfClientFromMonth = 0
+         const d = new Date()
+         const monthNow = d.getMonth() 
+         const yearNow = d.getFullYear()
+         this.clients.forEach( c => {
+             const clientDate = new Date(c.firstContact)
+             const month = clientDate.getMonth()
+             const year = clientDate.getFullYear()
+             if(month===monthNow && year===yearNow){
+                numOfClientFromMonth++
+             }
+         })
+         return numOfClientFromMonth
+     }
+
+     @computed get getEmailsNumber(){
+         const clientsWhoGotAnEmail = this.clients.filter( c => c.emailType !== 'null')
+         return clientsWhoGotAnEmail.length
+     }
+
+
+     @computed get getOutstandingClients(){
+        const outstandingClients = this.clients.filter( c => !c.sold)
+        return outstandingClients.length
+     }
+
+     @computed get getMostHotCountry(){
+         const countriesCount = {}
+         this.clients.forEach( c => {
+             if(countriesCount[c.country]){
+                countriesCount[c.country]++
+             } else {
+                countriesCount[c.country] = 1
+             }
+         })
+         let maxCountry = Object.keys(countriesCount)[0]
+         for(let c of Object.keys(countriesCount)){
+             if(countriesCount[c] > countriesCount[maxCountry]){
+                maxCountry=c
+             }
+         }
+         return maxCountry
+
+     }
+
  }
 

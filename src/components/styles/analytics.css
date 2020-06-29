@@ -1,34 +1,51 @@
-#badge svg{
+.badge-symbol svg{
     align-self: center;
     justify-self: center;
     font-size: 8em;
     /* color: white; */
 }
 
-#badge {
+.badge-symbol {
     display: grid;
-    background: limegreen;
+    /* background: limegreen; */
     width: 150px;
     height: 150px;
     border-radius: 50%;
     grid-area: b;
 }
 
-#new-clients-badge{
+.badge{
     display: grid;
     grid-template-areas: 
     "b n"
     "b d";
-    width: 23vw;
+    width: 85%;
+    justify-self: center;
     margin-top: 1%;
     margin-left: 1%;
+    box-shadow:"0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"
 }
 
-#amount-of-new-clients{
+.badge-value{
     grid-area: n;
     text-align: end;}
 
-#description-of-badage{
+.badge-description{
     grid-area: d;
     text-align: end;
 }
+
+.badge-container{
+    display: inline-block;
+    padding:1%;
+}
+
+#all-badges{
+    margin-top: 2%;
+    /* justify-self: center; */
+    /* width: 90%; */
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    width: 100vw;
+}
+
