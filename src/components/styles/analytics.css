@@ -1,0 +1,34 @@
+#badge svg{
+    align-self: center;
+    justify-self: center;
+    font-size: 8em;
+    /* color: white; */
+}
+
+#badge {
+    display: grid;
+    background: limegreen;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    grid-area: b;
+}
+
+#new-clients-badge{
+    display: grid;
+    grid-template-areas: 
+    "b n"
+    "b d";
+    width: 23vw;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+#amount-of-new-clients{
+    grid-area: n;
+    text-align: end;}
+
+#description-of-badage{
+    grid-area: d;
+    text-align: end;
+}
