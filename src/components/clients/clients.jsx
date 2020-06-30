@@ -8,10 +8,7 @@ import '../styles/clientsPage.css'
 const clientsPage =  inject('clientsStore')(observer((props) => {
     
     const clientsStore = props.clientsStore
-
-    useEffect(() => {
-        clientsStore.getClientsFromDB()
-    },[])
+    
 
     return (
         <div id="clients-page">

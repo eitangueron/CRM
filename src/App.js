@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, {useEffect} from 'react';
 // eslint-disable-next-line
 import { observer, inject } from 'mobx-react'
 // eslint-disable-next-line
@@ -9,8 +9,13 @@ import actionsPage from './components/actions/actions';
 import analyticsPage from './components/analytics/analytics';
 import ButtonAppBar from './components/navBar/navBar';
 
-const App = observer((props) => {
-    
+const App = inject('clientsStore')(observer((props) => {
+  
+    useEffect(() => {
+      props.clientsStore.getClientsFromDB()
+      },[])
+
+
     return (
        <div id="app">
          <Router >
@@ -25,7 +30,7 @@ const App = observer((props) => {
          </Router>
        </div>
     )
-})
+}))
         
 export default App;
 

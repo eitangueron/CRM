@@ -6,9 +6,6 @@ import '../styles/actionsPage.css'
 
 const actionsPage = inject('clientsStore')(observer((props) => {
     
-    useEffect(() => {
-        props.clientsStore.getClientsFromDB()
-    },[])
 
     return (
        <div>
