@@ -18,8 +18,10 @@ const TopEmployeesGraph = inject('clientsStore')(observer((props) => {
 
     return (
         <div id="topEmployeesGraph" >
-            {/* <ResponsiveContainer width='100%' height="100%"> */}
-                <BarChart width={730} height={250} data={data} 
+            <ResponsiveContainer width='100%' height="100%">
+                {/* <BarChart width={730} height={250} data={data}  */}
+                <BarChart data={data}
+                // layout = {'vertical' }
                 margin={{top: 5, right: 30, left: 20, bottom: 5,}} barSize={20}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="ownerName" />
@@ -29,7 +31,7 @@ const TopEmployeesGraph = inject('clientsStore')(observer((props) => {
                     <Bar dataKey="Sales" fill="#8884d8" />
                     {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
                 </BarChart>
-            {/* </ResponsiveContainer> */}
+            </ResponsiveContainer>
         </div>
     )
 }))
