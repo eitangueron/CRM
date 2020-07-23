@@ -71,7 +71,7 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
     return (
        <div id="update-user-info-container">  
            <div id="pick-client-name-box">
-            <h2>Update clients info:</h2>
+            <h2>Update Clients Info:</h2>
                 <InputLabel htmlFor="client-name-input">Enter clients name:</InputLabel>
                 <Autocomplete id="client-name-input"
                 options={clients} getOptionLabel={(c) => c.name +' '+ c.surName} style={{ width: 300 }} 

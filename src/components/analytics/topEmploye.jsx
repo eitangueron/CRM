@@ -1,35 +1,36 @@
 import { inject, observer } from 'mobx-react';
 import React, { PureComponent } from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label,
 } from 'recharts';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const TopEmployeesGraph = inject('clientsStore')(observer((props) => {
     
-    // const data = [
-    //     {
-    //       "ownerName": "Page A",
-    //       "uv": 4000,
-    //     //   "pv": 2400
-    //     }
-    //             ]
-
-    const data = props.clientsStore.getOwners.map( o => ({'ownerName':o, 'Sales':2000}))
+    const ownersSalesData = props.clientsStore.getOwnersSalesData
+    
+    const data = Object.keys(ownersSalesData).map( o => ({'ownerName':o, 'Sales':ownersSalesData[o]}))
+    data.sort(function(a, b){
+        return b.Sales-a.Sales
+    })
 
     return (
-        <div id="topEmployeesGraph" >
+        <div id="topEmployeesGraph" style={{textAlign:'center', display:'inline-block', width:'39vw'}}>
+            <h3>Top Employees</h3>
             <ResponsiveContainer width='100%' height="100%">
-                {/* <BarChart width={730} height={250} data={data}  */}
-                <BarChart data={data}
-                // layout = {'vertical' }
-                margin={{top: 5, right: 30, left: 20, bottom: 5,}} barSize={20}>
+                <BarChart data={data.slice(0,3)}
+                width = '100%'
+                margin={{top: 5, right: 30, left: 20, bottom: 5,}} barSize={40}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="ownerName" />
-                    <YAxis />
+                    <XAxis dataKey="ownerName" tickCount={6}>
+                        {/* <Label value="Owners" offset={-5} position="insideBottom" /> */}
+                    </XAxis>
+                    <YAxis  dataKey="Sales">
+                        <Label value="Sales" offset={-25} position="left" />
+                    </YAxis>
                     <Tooltip />
-                    <Legend />
                     <Bar dataKey="Sales" fill="#8884d8" />
-                    {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
                 </BarChart>
             </ResponsiveContainer>
         </div>

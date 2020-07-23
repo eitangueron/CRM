@@ -1,3 +1,5 @@
+-- CREATE DATABASE crm_project;
+
 USE crm_project;
 
 -- CREATE TABLE owners (
@@ -5,24 +7,35 @@ USE crm_project;
 --     name VARCHAR(20)
 -- );
 
-CREATE TABLE clients (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(20),
-    -- email VARCHAR(30),
-    firstContact DATE,
-    emailType INT, 
-    sold BOOLEAN,
-    c_owner INT,
-    country INT,
+-- CREATE TABLE email_types (
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     e_type VARCHAR(20)
+-- );
+
+-- CREATE TABLE countries(
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR(40)
+-- );
+
+-- CREATE TABLE clients (
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     name VARCHAR(20),
+--     -- email VARCHAR(30),
+--     firstContact DATE,
+--     emailType INT, 
+--     sold BOOLEAN,
+--     c_owner INT,
+--     country INT,
 
 
-    FOREIGN KEY (emailType) REFERENCES email_types(id),
-    FOREIGN KEY (c_owner) REFERENCES owners(id),
-    FOREIGN KEY (country) REFERENCES countries(id)
-)
+--     FOREIGN KEY (emailType) REFERENCES email_types(id),
+--     FOREIGN KEY (c_owner) REFERENCES owners(id),
+--     FOREIGN KEY (country) REFERENCES countries(id)
+-- );
 
 
--- DROP TABLE clients
+-- DROP TABLE clients;
+-- DROP TABLE countries;
 
 -- SELECT clients.id AS _id, clients.name, firstContact, sold,
 -- e_type AS emailType, owners.name AS owner, countries.name AS country
@@ -39,11 +52,5 @@ CREATE TABLE clients (
 -- SELECT id FROM countries
 -- WHERE name='Israel'
 
--- CREATE TABLE countries(
---     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
---     name VARCHAR(40)
--- )
 
-
--- DROP TABLE countries
 

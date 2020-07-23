@@ -17,6 +17,8 @@ const db = new Sequelize('mysql://root:1234@localhost/crm_project')
 // ownersArr.forEach(o => db.query(`INSERT INTO owners VALUES (null,'${o}')`))
 
 
+
+
 //////////    inserting countries:
 
 // const countries = {}
@@ -30,10 +32,13 @@ const db = new Sequelize('mysql://root:1234@localhost/crm_project')
 
 // countriesArr.forEach(c => db.query(`INSERT INTO countries VALUES (null,'${c}')`))
 
+
+
 /////////    inserting emailtypes :
 
 // const emailTypes = ['A', 'B', 'C', 'D']
 
 // emailTypes.forEach( e => db.query(`INSERT INTO email_types VALUES (null, '${e}')`) )
 
-// db.query(`INSERT INTO email_types VALUES (null, 'null'`)
+// db.query(`INSERT INTO email_types VALUES (null, 'null')`)
+

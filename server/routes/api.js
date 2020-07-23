@@ -23,6 +23,11 @@ router.get('/clients', async function(req,res){
     }
 })
 
+router.get('/countries', async function(req,res){
+    const [countries] = await db.query(`SELECT name FROM countries`)
+    res.send(countries)
+})
+
 router.post('/clients/:name/:country/:owner/:date', async function(req,res){
     try{
         const [country] = await db.query(`SELECT id FROM countries WHERE name='${req.params.country}'`)

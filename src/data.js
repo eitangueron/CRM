@@ -7593,7 +7593,7 @@ const clientsData = [
 
 
 
-// export default clientsData
+module.exports = clientsData
 
 // const Sequelize = require('sequelize')
 // const db = new Sequelize('mysql://root:1234@localhost/crm_project')
@@ -7605,7 +7605,7 @@ const clientsData = [
 //   const countryID = country[0].id
 //   return countryID
 // }
-// // geCountryId(clientsData[11])
+// // // geCountryId(clientsData[11])
 
 // const getEmailType = async (user) => {
 //   const [email] = await db.query(`SELECT id FROM email_types WHERE e_type='${user.emailType}'`)
@@ -7613,8 +7613,8 @@ const clientsData = [
 //   return emailID
 // }
 
-// // getEmailType(clientsData[0])
-// // getEmailType(clientsData[1])
+// // // getEmailType(clientsData[0])
+// // // getEmailType(clientsData[1])
 
 // const getOwner = async (user) => {
 //   const [owner] = await db.query(`SELECT id FROM owners WHERE name='${user.owner}'`)
@@ -7622,10 +7622,10 @@ const clientsData = [
 //   return ownerID
 // }
 
-// // getOwner(clientsData[1]).then(res => console.log(res))
+// // // getOwner(clientsData[1]).then(res => console.log(res))
 
 
-// ///////////     inserting all:
+// // ///////////     inserting all:
 
 // clientsData.forEach( async c => {
 
@@ -7640,7 +7640,7 @@ const clientsData = [
 
 
 
-export default clientsData
+// export default clientsData
 
 // const countryList = [
 // 	"Afghanistan",
@@ -7658,7 +7658,7 @@ export default clientsData
 // 	"Australia",
 // 	"Austria",
 // 	"Azerbaijan",
-// 	"Bahamas (the)",
+// 	"Bahamas",
 // 	"Bahrain",
 // 	"Bangladesh",
 // 	"Barbados",
@@ -7668,13 +7668,13 @@ export default clientsData
 // 	"Benin",
 // 	"Bermuda",
 // 	"Bhutan",
-// 	"Bolivia (Plurinational State of)",
+// 	"Bolivia",
 // 	"Bonaire, Sint Eustatius and Saba",
 // 	"Bosnia and Herzegovina",
 // 	"Botswana",
 // 	"Bouvet Island",
 // 	"Brazil",
-// 	"British Indian Ocean Territory (the)",
+// 	"British Indian Ocean Territory",
 // 	"Brunei Darussalam",
 // 	"Bulgaria",
 // 	"Burkina Faso",
@@ -7683,18 +7683,18 @@ export default clientsData
 // 	"Cambodia",
 // 	"Cameroon",
 // 	"Canada",
-// 	"Cayman Islands (the)",
-// 	"Central African Republic (the)",
+// 	"Cayman Islands",
+// 	"Central African Republic",
 // 	"Chad",
 // 	"Chile",
 // 	"China",
 // 	"Christmas Island",
-// 	"Cocos (Keeling) Islands (the)",
+// 	"Cocos Islands",
 // 	"Colombia",
-// 	"Comoros (the)",
-// 	"Congo (the Democratic Republic of the)",
-// 	"Congo (the)",
-// 	"Cook Islands (the)",
+// 	"Comoros",
+// 	"Congo",
+// 	"Congo",
+// 	"Cook Islands",
 // 	"Costa Rica",
 // 	"Croatia",
 // 	"Cuba",
@@ -7705,7 +7705,7 @@ export default clientsData
 // 	"Denmark",
 // 	"Djibouti",
 // 	"Dominica",
-// 	"Dominican Republic (the)",
+// 	"Dominican Republic",
 // 	"Ecuador",
 // 	"Egypt",
 // 	"El Salvador",
@@ -7714,16 +7714,16 @@ export default clientsData
 // 	"Estonia",
 // 	"Eswatini",
 // 	"Ethiopia",
-// 	"Falkland Islands (the) [Malvinas]",
-// 	"Faroe Islands (the)",
+// 	"Falkland Islands",
+// 	"Faroe Islands",
 // 	"Fiji",
 // 	"Finland",
 // 	"France",
 // 	"French Guiana",
 // 	"French Polynesia",
-// 	"French Southern Territories (the)",
+// 	"French Southern Territories",
 // 	"Gabon",
-// 	"Gambia (the)",
+// 	"Gambia",
 // 	"Georgia",
 // 	"Germany",
 // 	"Ghana",
@@ -7740,14 +7740,14 @@ export default clientsData
 // 	"Guyana",
 // 	"Haiti",
 // 	"Heard Island and McDonald Islands",
-// 	"Holy See (the)",
+// 	"Holy See",
 // 	"Honduras",
 // 	"Hong Kong",
 // 	"Hungary",
 // 	"Iceland",
 // 	"India",
 // 	"Indonesia",
-// 	"Iran (Islamic Republic of)",
+// 	"Iran",
 // 	"Iraq",
 // 	"Ireland",
 // 	"Isle of Man",
@@ -7760,11 +7760,10 @@ export default clientsData
 // 	"Kazakhstan",
 // 	"Kenya",
 // 	"Kiribati",
-// 	"Korea (the Democratic People's Republic of)",
-// 	"Korea (the Republic of)",
+// 	"Korea",
 // 	"Kuwait",
 // 	"Kyrgyzstan",
-// 	"Lao People's Democratic Republic (the)",
+// 	"Lao People's Democratic Republic",
 // 	"Latvia",
 // 	"Lebanon",
 // 	"Lesotho",
@@ -7780,14 +7779,14 @@ export default clientsData
 // 	"Maldives",
 // 	"Mali",
 // 	"Malta",
-// 	"Marshall Islands (the)",
+// 	"Marshall Islands",
 // 	"Martinique",
 // 	"Mauritania",
 // 	"Mauritius",
 // 	"Mayotte",
 // 	"Mexico",
-// 	"Micronesia (Federated States of)",
-// 	"Moldova (the Republic of)",
+// 	"Micronesia",
+// 	"Moldova",
 // 	"Monaco",
 // 	"Mongolia",
 // 	"Montenegro",
@@ -7798,15 +7797,15 @@ export default clientsData
 // 	"Namibia",
 // 	"Nauru",
 // 	"Nepal",
-// 	"Netherlands (the)",
+// 	"Netherlands",
 // 	"New Caledonia",
 // 	"New Zealand",
 // 	"Nicaragua",
-// 	"Niger (the)",
+// 	"Niger",
 // 	"Nigeria",
 // 	"Niue",
 // 	"Norfolk Island",
-// 	"Northern Mariana Islands (the)",
+// 	"Northern Mariana Islands",
 // 	"Norway",
 // 	"Oman",
 // 	"Pakistan",
@@ -7816,7 +7815,7 @@ export default clientsData
 // 	"Papua New Guinea",
 // 	"Paraguay",
 // 	"Peru",
-// 	"Philippines (the)",
+// 	"Philippines",
 // 	"Pitcairn",
 // 	"Poland",
 // 	"Portugal",
@@ -7824,7 +7823,7 @@ export default clientsData
 // 	"Qatar",
 // 	"Republic of North Macedonia",
 // 	"Romania",
-// 	"Russian Federation (the)",
+// 	"Russian Federation",
 // 	"Rwanda",
 // 	"Réunion",
 // 	"Saint Barthélemy",
@@ -7853,7 +7852,7 @@ export default clientsData
 // 	"South Sudan",
 // 	"Spain",
 // 	"Sri Lanka",
-// 	"Sudan (the)",
+// 	"Sudan",
 // 	"Suriname",
 // 	"Svalbard and Jan Mayen",
 // 	"Sweden",
@@ -7871,18 +7870,18 @@ export default clientsData
 // 	"Tunisia",
 // 	"Turkey",
 // 	"Turkmenistan",
-// 	"Turks and Caicos Islands (the)",
+// 	"Turks and Caicos Islands",
 // 	"Tuvalu",
 // 	"Uganda",
 // 	"Ukraine",
-// 	"United Arab Emirates (the)",
-// 	"United Kingdom of Great Britain and Northern Ireland (the)",
-// 	"United States Minor Outlying Islands (the)",
-// 	"United States of America (the)",
+// 	"United Arab Emirates",
+// 	"United Kingdom of Great Britain and Northern Ireland",
+// 	"United States Minor Outlying Islands",
+// 	"United States of America",
 // 	"Uruguay",
 // 	"Uzbekistan",
 // 	"Vanuatu",
-// 	"Venezuela (Bolivarian Republic of)",
+// 	"Venezuela",
 // 	"Viet Nam",
 // 	"Virgin Islands (British)",
 // 	"Virgin Islands (U.S.)",

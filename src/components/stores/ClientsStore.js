@@ -6,6 +6,7 @@ export class ClientsStore {
     
     constructor() {
        this.clients = []
+       this.countriesList = []
        this.filterCategory = 'name'
        this.filterVal = ''
     }
@@ -13,6 +14,7 @@ export class ClientsStore {
     @observable clients
     @observable filterCategory
     @observable filterVal
+    @observable countriesList
 
     getSurName(fullName){
         const name = fullName.split(' ')
@@ -91,6 +93,44 @@ export class ClientsStore {
         return Object.values(owners)
      }
 
+
+    @computed get getOwnersSalesData(){
+        const ownersSales = {}
+        this.clients.forEach( c => {
+            if(c.sold){
+                if(ownersSales[c.owner]){
+                    ownersSales[c.owner]++
+                } else {
+                    ownersSales[c.owner] = 1 
+                }
+            }
+        })
+        return ownersSales
+     }
+
+
+     @computed get getSalesByCountry(){
+        const salesByCountry = {}
+        this.clients.forEach( c => {
+            if(c.sold){
+                if(salesByCountry[c.country]){
+                    salesByCountry[c.country]++
+                } else {
+                    salesByCountry[c.country] = 1 
+                }
+            }
+        })
+        return salesByCountry
+     }
+
+     @action async getCountries(){
+        const countries = await axios.get('http://localhost:4000/countries')
+        this.countriesList = countries.data
+     }
+
+     @computed get clientsNum(){
+         return this.clients.length
+     }
 
      @computed get getClientsFromMonth(){
          let numOfClientFromMonth = 0

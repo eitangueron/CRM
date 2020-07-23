@@ -7,6 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import { observer, inject } from 'mobx-react'
 import Axios from 'axios';
+import { useEffect } from 'react';
+import { MenuItem } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 const capitalize = require('capitalize')
 const dateformat = require('dateformat')
 
@@ -19,7 +22,19 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
     const [countryInput, setCountryInput] =useState('')
     const [ownerInput, setOwnerInput] =useState('')
     const owners = clientsStore.getOwners
+    let countriesList = clientsStore.countriesList
+    // let countriesList = []
 
+
+        // const getCountries = async () => {
+        //     const countries = await Axios.get('http://localhost:4000/countries')
+        //     console.log(countries.data)
+        //     countriesList = countries.data
+        // }
+
+    // useEffect(() => {
+    //     countriesList = clientsStore.getCountries()
+    // }, [])
 
     const addUser = () => {
         if(firstNameInput && surNameInput && countryInput && ownerInput){
@@ -34,6 +49,7 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
                     setSurNameInput('')
                     setCountryInput('')
                     setOwnerInput('')
+                    props.clientsStore.getClientsFromDB()
                 } else {
                     alert ('seems to be a problem with adding a new client')
                 }
@@ -52,15 +68,42 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
           marginTop: theme.spacing(2),
         },
       }));
+
     const classes = useStyles();
   
+
     
     return (
        <div id="add-new-client-box">
             <h2>Add New Client:</h2>
             <TextField id="first-name-input-new-client" type="text" label="First Name" value={firstNameInput} onChange={(e)=>setFirstNameInput(e.target.value)}/> <br/>
             <TextField id="sur-name-input-new-client" type="text" label="Sur Name" value={surNameInput} onChange={(e)=>setSurNameInput(e.target.value)}/> <br/>
-            <TextField id="country-input-new-client" type="text" label="Country" value={countryInput} onChange={(e)=>setCountryInput(e.target.value)}/> <br/>
+            {/* <TextField id="country-input-new-client" type="text" label="Country" value={countryInput} onChange={(e)=>setCountryInput(e.target.value)}/> <br/> */}
+
+            {/* <Autocomplete
+                id="country-input-new-client"
+                options={countriesList}
+                getOptionLabel={(option) => option.name}
+                style={{ width: 300 }}
+                value={countryInput}
+                onChange={(e, newvalue) => {
+                    debugger
+                    setCountryInput(e.target.innerText);
+                }}
+                renderInput={(params) => <TextField {...params} label="Country" />}
+            /> */}
+
+            <FormControl className={classes.formControl}>
+                <InputLabel id="country-inputs-new-client">Country</InputLabel>
+                <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={countryInput}
+                onChange={(e)=>setCountryInput(e.target.value)}
+                >
+                   {countriesList.map( c =>  <option value={c.name}>{c.name}</option> )}
+                </Select>
+            </FormControl>
 
             <FormControl className={classes.formControl}>
             <InputLabel htmlFor="owner-input">Owner</InputLabel>

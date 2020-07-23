@@ -13,6 +13,7 @@ const App = inject('clientsStore')(observer((props) => {
   
     useEffect(() => {
       props.clientsStore.getClientsFromDB()
+      props.clientsStore.getCountries()
       },[])
 
 
