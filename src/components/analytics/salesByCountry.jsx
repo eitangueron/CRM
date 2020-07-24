@@ -18,17 +18,16 @@ const SalesByCountryGraph = inject('clientsStore')(observer((props) => {
         data  = props.clientsStore.getSalesByEmail
     } else if (salesByCategory==='month'){
         data  = props.clientsStore.getSalesByMonths
-    }
+    } 
     // const data  = props.clientsStore.getSalesByCountry
 
     return (
-        <div id="salesByCountry" style={{textAlign:'center', display:'inline-block', marginLeft: '0%',  width:'58vw', height:'300px'}}>
+        <div id="salesByCountry" style={{textAlign:'center', display:'inline-block', marginLeft: '2%',  width:'58vw', height:'300px'}}>
             <h3 style={{display:'inline'}}>Sales By </h3>
             <select onChange={(e)=>setCategory(e.target.value)}>
                 <option value="country">Country</option>
                 <option value="email">Email</option>
-                <option value="month">Month (All Time)</option>
-
+                <option value="month">Month (All Year)</option>
             </select>
             <ResponsiveContainer width='100%' height="100%">
                 <BarChart data={data.slice(0,12)}

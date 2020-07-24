@@ -8,13 +8,8 @@ import { useState } from 'react';
 
 const TopEmployeesGraph = inject('clientsStore')(observer((props) => {
     
-    const ownersSalesData = props.clientsStore.getOwnersSalesData
+    const data = props.clientsStore.getOwnersSalesData
     
-    const data = Object.keys(ownersSalesData).map( o => ({'ownerName':o, 'Sales':ownersSalesData[o]}))
-    data.sort(function(a, b){
-        return b.Sales-a.Sales
-    })
-
     const colors = ['gold', 'silver', '#cd7f32']
 
     return (

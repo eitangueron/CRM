@@ -106,7 +106,11 @@ export class ClientsStore {
                 }
             }
         })
-        return ownersSales
+        let data = Object.keys(ownersSales).map( o => ({'ownerName':o, 'Sales':ownersSales[o]}))
+        data.sort(function(a, b){
+            return b.Sales-a.Sales
+        })
+        return data
      }
 
 
