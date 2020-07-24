@@ -30,7 +30,7 @@ const TopEmployeesGraph = inject('clientsStore')(observer((props) => {
                         <Label value="Sales" offset={-25} position="left" />
                     </YAxis>
                     <Tooltip />
-                    <Bar dataKey="Sales" fill="#8884d8" />
+                    <Bar dataKey="Sales" fill="#1b76d1" />
                 </BarChart>
             </ResponsiveContainer>
         </div>

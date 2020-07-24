@@ -120,7 +120,29 @@ export class ClientsStore {
                 }
             }
         })
-        return salesByCountry
+        const data = Object.keys(salesByCountry).map( o => ({'category':o, 'sales':salesByCountry[o]}))
+        data.sort(function(a, b){
+            return a.sales-b.sales
+        })
+        return data
+     }
+
+     @computed get getSalesByEmail(){
+        const salesByEmail = {A:0,B:0,C:0,D:0}
+        this.clients.forEach( c => {
+            if(c.sold){
+                if(salesByEmail[c.emailType]){
+                    salesByEmail[c.emailType]++
+                } else {
+                    salesByEmail[c.emailType] = 1 
+                }
+            }
+        })
+        const data = Object.keys(salesByEmail).map( o => ({'category':o, 'sales':salesByEmail[o]}))
+        data.sort(function(a, b){
+            return a.category>b.category
+        })
+        return data
      }
 
      @action async getCountries(){
@@ -147,6 +169,28 @@ export class ClientsStore {
          })
          return numOfClientFromMonth
      }
+
+     @computed get getClientsFromLastMonth(){
+        let numOfClientFromMonth = 0
+        const d = new Date()
+        let monthNow = d.getMonth() 
+        let yearNow = d.getFullYear()
+        if(monthNow === 0){
+            monthNow = 11
+            yearNow-=1
+        } else {
+            monthNow-=1
+        }   
+        this.clients.forEach( c => {
+            const clientDate = new Date(c.firstContact)
+            const month = clientDate.getMonth()
+            const year = clientDate.getFullYear()
+            if(month===monthNow && year===yearNow){
+               numOfClientFromMonth++
+            }
+        })
+        return numOfClientFromMonth
+    }
 
      @computed get getEmailsNumber(){
          const clientsWhoGotAnEmail = this.clients.filter( c => c.emailType !== 'null')

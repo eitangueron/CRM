@@ -23,7 +23,7 @@ const AllTheBadges = inject('clientsStore')(observer((props) => {
     const allBadges = [
         {id:'newClientsThisMonth-badge', color:'limegreen',symbol:<TrendingUpOutlinedIcon/>, value:clientsStore.getClientsFromMonth, description:`New ${getMonthRN()} Clients`},
         {id:'emailsSent-badge', color:'blue',symbol:<MailOutlineIcon/>, value:clientsStore.getEmailsNumber, description:`Emails Sent`},
-        {id:'outStanding-badge', color:'red',symbol:<AccountCircleIcon/>, value:clientsStore.getOutstandingClients, description:`Outstanding Clients`},
+        {id:'outStanding-badge', color:'red',symbol:<AccountCircleIcon/>, value:clientsStore.getOutstandingClients, description:`Pending Clients`},
         {id:'hottestCountry-badge', color:'yellow',symbol:<PublicIcon/>, value:clientsStore.getMostHotCountry, description:`Hottest Country`}
     ]
 

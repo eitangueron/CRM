@@ -10,7 +10,7 @@ const Graphs = (props) => {
         <div id="all-graphs">
             <TopEmployeesGraph />
             <SalesByCountryGraph />
-            <ClientAccPieChart />
+            {/* <ClientAccPieChart /> */}
         </div>
     )
 }
