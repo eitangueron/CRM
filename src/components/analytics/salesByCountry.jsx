@@ -17,12 +17,12 @@ const SalesByCountryGraph = inject('clientsStore')(observer((props) => {
     } else if (salesByCategory==='email'){
         data  = props.clientsStore.getSalesByEmail
     } else if (salesByCategory==='month'){
-
+        data  = props.clientsStore.getSalesByMonths
     }
     // const data  = props.clientsStore.getSalesByCountry
 
     return (
-        <div id="salesByCountry" style={{textAlign:'center', display:'inline-block', marginLeft: '2%',  width:'58vw', height:'300px'}}>
+        <div id="salesByCountry" style={{textAlign:'center', display:'inline-block', marginLeft: '0%',  width:'58vw', height:'300px'}}>
             <h3 style={{display:'inline'}}>Sales By </h3>
             <select onChange={(e)=>setCategory(e.target.value)}>
                 <option value="country">Country</option>
@@ -31,7 +31,7 @@ const SalesByCountryGraph = inject('clientsStore')(observer((props) => {
 
             </select>
             <ResponsiveContainer width='100%' height="100%">
-                <BarChart data={data.slice(0,8)}
+                <BarChart data={data.slice(0,12)}
                 margin={{top: 5, right: 30, left: 20, bottom: 5,}} barSize={40}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="category" tickCount={8}>
@@ -41,7 +41,7 @@ const SalesByCountryGraph = inject('clientsStore')(observer((props) => {
                         <Label value="Sales" offset={-25} position="left" />
                     </YAxis>
                     <Tooltip />
-                    <Bar dataKey="sales" fill="#1b76d1" />
+                    <Bar dataKey="sales" fill="#1a76d2" />
                 </BarChart>
             </ResponsiveContainer>
         </div>

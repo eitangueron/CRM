@@ -1,7 +1,7 @@
 import { inject, observer } from 'mobx-react';
 import React, { PureComponent } from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label, LabelList, Cell,
 } from 'recharts';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -15,9 +15,11 @@ const TopEmployeesGraph = inject('clientsStore')(observer((props) => {
         return b.Sales-a.Sales
     })
 
+    const colors = ['gold', 'silver', '#cd7f32']
+
     return (
         <div id="topEmployeesGraph" style={{textAlign:'center', display:'inline-block', width:'39vw'}}>
-            <h3>Top Employees</h3>
+            <h3 style={{display: 'inline'}}>Top Employees</h3>
             <ResponsiveContainer width='100%' height="100%">
                 <BarChart data={data.slice(0,3)}
                 width = '100%'
@@ -30,7 +32,14 @@ const TopEmployeesGraph = inject('clientsStore')(observer((props) => {
                         <Label value="Sales" offset={-25} position="left" />
                     </YAxis>
                     <Tooltip />
-                    <Bar dataKey="Sales" fill="#1b76d1" />
+                    {/* <Bar dataKey="Sales" fill="#1a76d2" /> */}
+                    <Bar dataKey="Sales">
+                        {
+                        data.slice(0,3).map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colors[index]} />
+                        ))
+                        }
+                    </Bar>
                 </BarChart>
             </ResponsiveContainer>
         </div>

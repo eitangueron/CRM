@@ -1,15 +1,15 @@
 .badge-symbol svg{
     align-self: center;
     justify-self: center;
-    font-size: 8em;
+    font-size: 6em;
     /* color: white; */
 }
 
 .badge-symbol {
     display: grid;
     /* background: limegreen; */
-    width: 150px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
     grid-area: b;
 }
@@ -55,5 +55,5 @@
 }
 
 #all-graphs{
-    margin-top: 2%;
+    margin-top: 5%;
 }

@@ -16,6 +16,7 @@ export class ClientsStore {
     @observable filterVal
     @observable countriesList
 
+
     getSurName(fullName){
         const name = fullName.split(' ')
         let surname = ''
@@ -27,7 +28,6 @@ export class ClientsStore {
                 surname+=n
               }
         }
-
         return surname
     } 
     
@@ -42,6 +42,7 @@ export class ClientsStore {
         return arr
     }
     
+
     @action async getClientsFromDB (){
         axios.get('http://localhost:4000/clients').then(res => {
 
@@ -127,6 +128,33 @@ export class ClientsStore {
         return data
      }
 
+
+     @computed get getSalesByMonths(){
+        // const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        const salesByMonths = {}
+        for(let i=0; i<12; i++){
+            salesByMonths[i]=0
+        }
+        this.clients.forEach( c => {
+            if(c.sold){
+                let firstContact = new Date(c.firstContact)
+                let month = firstContact.getMonth()
+                if(salesByMonths[month]){
+                    salesByMonths[month]++
+                } else {
+                    salesByMonths[month] = 1 
+                }
+            }
+        })
+        const data = Object.keys(salesByMonths).map( o => ({'category':months[o], 'sales':salesByMonths[o]}))
+        // data.sort(function(a, b){
+        //     return a.sales-b.sales
+        // })
+        return data
+     }
+
+
      @computed get getSalesByEmail(){
         const salesByEmail = {A:0,B:0,C:0,D:0}
         this.clients.forEach( c => {
@@ -145,6 +173,7 @@ export class ClientsStore {
         return data
      }
 
+
      @action async getCountries(){
         const countries = await axios.get('http://localhost:4000/countries')
         this.countriesList = countries.data
@@ -154,6 +183,8 @@ export class ClientsStore {
          return this.clients.length
      }
 
+
+     // badges:
      @computed get getClientsFromMonth(){
          let numOfClientFromMonth = 0
          const d = new Date()
@@ -219,7 +250,6 @@ export class ClientsStore {
              }
          }
          return maxCountry
-
      }
 
  }
