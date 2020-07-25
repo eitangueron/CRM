@@ -349,4 +349,3 @@ const insertDummyData = async () => {
 }        
 
 
-module.exports = insertDummyData
