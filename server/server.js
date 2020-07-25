@@ -8,7 +8,8 @@ const Sequelize = require('sequelize')
 // const db = new Sequelize('mysql://root:1234@localhost/crm_project')
 const db = new Sequelize('mysql://bf7de9fd81a34a:1d8826be@eu-cdbr-west-03.cleardb.net/heroku_026d942682a000c?reconnect=true')
 
-
+const insertDummyData = require('../src/insertingData')
+insertDummyData()
 // app.use(function (req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*')
 //     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
