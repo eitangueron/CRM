@@ -7,7 +7,6 @@ import CustomizedSnackbars from '../snackbar/snackBar';
 
 const actionsPage = inject('clientsStore')(observer((props) => {
     
-
     return (
        <div>
            <UpdateNewClient />

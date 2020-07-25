@@ -9,6 +9,9 @@ const Axios = require('axios')
 
 const UpdateNewClient = inject('clientsStore')(observer((props) => {
     
+    // const API_URL = 'http://localhost:4000/'
+    const API_URL = ''
+    
     const clients = props.clientsStore.clients
     const [clientName, setClientName] = useState('')  
     const [ownerInput, setOwnerInput] =useState('')
@@ -18,7 +21,7 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
 
     const updateOwner = () => {
         if(ownerInput && clientName){
-            Axios.put(`http://localhost:4000/client/updateOwner/${clientName}/${ownerInput}`).then( res => {
+            Axios.put(`${API_URL}client/updateOwner/${clientName}/${ownerInput}`).then( res => {
                 console.log(res.data)
                 if(res.data.status === 'success'){
                     props.clientsStore.setSnackBar('Moved Client Successfully!',`${clientName} new owner is ${ownerInput}`,'success',true)
@@ -35,7 +38,7 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
     const updateEmail = () => {
 
         if(emailInput && clientName){
-            Axios.put(`http://localhost:4000/client/sendEmail/${clientName}/${emailInput}`).then( res => {
+            Axios.put(`${API_URL}client/sendEmail/${clientName}/${emailInput}`).then( res => {
                 if(res.data.status === 'success'){
                     props.clientsStore.setSnackBar('Email Sent Successfully!',`Sent ${clientName} an email from type ${emailInput}`,'success',true)
                 } else {
@@ -54,7 +57,7 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
 
     const declareSale = () => {
         if(clientName){
-            Axios.put(`http://localhost:4000/client/declareSell/${clientName}`).then( res => {
+            Axios.put(`${API_URL}client/declareSell/${clientName}`).then( res => {
                 if(res.data.status === 'success'){
                     props.clientsStore.setSnackBar('Congrats!',`${clientName} updated! Congrats on the sale!`,'success',true)
                 } else {

@@ -10,6 +10,9 @@ import { inject, observer } from 'mobx-react';
 const axios = require('axios')
 const capitalize = require('capitalize')
 
+// const API_URL = 'http://localhost:4000/'
+const API_URL = ''
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -50,7 +53,7 @@ export default inject('clientsStore')(observer(function UpdateClient(props) {
         if(nameInputBar && surNameInputBar && countryInputBar){
             const name = capitalize(nameInputBar) + ' ' + capitalize(surNameInputBar)
             const country= capitalize(countryInputBar)
-            await axios.put(`http://localhost:4000/clients/${parseInt(clientId)}/${name}/${country}`)
+            await axios.put(`${API_URL}clients/${parseInt(clientId)}/${name}/${country}`)
             .then( res => {
                 if(res.data.status === 'success'){
                     const clientData = {id:clientId, name:name, country:country}

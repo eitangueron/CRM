@@ -13,6 +13,9 @@ const dateformat = require('dateformat')
 
 const AddNewAclient = inject('clientsStore')(observer((props) => {
     
+    // const API_URL = 'http://localhost:4000/'
+    const API_URL = ''
+    
 
     const clientsStore = props.clientsStore
     const [firstNameInput, setFirstNameInput] =useState('')
@@ -22,14 +25,14 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
     const owners = clientsStore.getOwners
     let countriesList = clientsStore.countriesList
 
-
+    
     const addUser = () => {
         if(firstNameInput && surNameInput && countryInput && ownerInput){
             const name = capitalize(firstNameInput) + ' ' + capitalize(surNameInput)
             const country = capitalize(countryInput)
             const owner = capitalize(ownerInput)
             const date = new Date()
-            Axios.post(`http://localhost:4000/clients/${name}/${country}/${owner}/${dateformat(date,'isoDate')}`).then( res => {
+            Axios.post(`${API_URL}clients/${name}/${country}/${owner}/${dateformat(date,'isoDate')}`).then( res => {
                 if(res.data.status==='success'){
                     props.clientsStore.setSnackBar('Added New Client Successfully!',`${name} from ${country} to ${owner}`,'success',true)
                     setFirstNameInput('')

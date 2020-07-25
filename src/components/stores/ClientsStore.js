@@ -3,7 +3,8 @@ import { observable, action, computed } from 'mobx'
 const axios = require('axios')
 
 export class ClientsStore {
-    
+
+
     constructor() {
        this.clients = []
        this.countriesList = []
@@ -13,6 +14,8 @@ export class ClientsStore {
        this.snackBarTextTitle = ''
        this.snackBarTextContent = ''
        this.snackBarType = ''
+        // const API_URL = 'http://localhost:4000/'
+        this.API_URL =  ''
     }
 
     @observable clients
@@ -58,7 +61,7 @@ export class ClientsStore {
     
 
     @action async getClientsFromDB (){
-        axios.get('http://localhost:4000/clients').then(res => {
+        axios.get(`${this.API_URL}clients`).then(res => {
 
             this.clients = this.modifyClients(res.data)
         })
@@ -193,7 +196,7 @@ export class ClientsStore {
 
 
      @action async getCountries(){
-        const countries = await axios.get('http://localhost:4000/countries')
+        const countries = await axios.get(`${this.API_URL}countries`)
         this.countriesList = countries.data
      }
 

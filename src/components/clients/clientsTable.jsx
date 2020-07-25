@@ -16,6 +16,9 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import {observer, inject} from 'mobx-react'
 import axios from 'axios';
 
+// const API_URL = 'http://localhost:4000/'
+const API_URL = ''
+
 
 function GetFormattedDate(date) {
     var todayTime = new Date(date)
@@ -71,7 +74,7 @@ const StickyHeadTable = inject('clientsStore')(observer((props) => {
   const deleteClient = async (clientID) => {
     let sure = window.confirm('Are you sure you want to permanently delete this client?')
     if(sure) {
-      await axios.delete(`http://localhost:4000/clients/${clientID}`).then(res => {
+      await axios.delete(`${API_URL}clients/${clientID}`).then(res => {
         if(res.data.status === 'success'){
           clientsStore.deleteClient(clientID)
           props.clientsStore.setSnackBar('Deleted Client Successfully!','','success',true)
