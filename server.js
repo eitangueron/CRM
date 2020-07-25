@@ -17,15 +17,22 @@ const db = new Sequelize('mysql://bf7de9fd81a34a:1d8826be@eu-cdbr-west-03.cleard
 
 // })
 
+const publicPath = path.join(__dirname, '..', 'public');
+
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(express.static(path.join(__dirname, 'dist')))
 // app.use(express.static(path.join(__dirname, 'node_modules')))
 app.use(`/`, api)
 
-app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('*', function (req, res) {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+ });
 
 const PORT = 4000;
 app.listen(process.env.PORT || PORT, () => console.log(`Server is running on port ${PORT}`));
