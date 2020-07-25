@@ -1,19 +1,19 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react'
 // import clientsData from '../../data'
 // inject("ClientsDATA")
 import StickyHeadTable from './clientsTable'
 import '../styles/clientsPage.css'
+import CustomizedSnackbars from '../snackbar/snackBar';
 
 const clientsPage =  inject('clientsStore')(observer((props) => {
     
     const clientsStore = props.clientsStore
-    
 
     return (
         <div id="clients-page">
             <div id="filter-bar">
-                <input type="text" placeholder="search" id="filter-search-bar" value={clientsStore.filterVal} onChange={(e)=>clientsStore.setFilterVal(e.target.value)}/>
+                <input type="text" placeholder="Search Client By" id="filter-search-bar" value={clientsStore.filterVal} onChange={(e)=>clientsStore.setFilterVal(e.target.value)}/>
                 <select name="category" id="filter-dropdown-menu" value={clientsStore.filterCategory} onChange={(e)=>clientsStore.setFilterCategory(e.target.value)}>
                     <option value="name">Name</option>
                     <option value="surName">Sur Name</option>
@@ -25,6 +25,9 @@ const clientsPage =  inject('clientsStore')(observer((props) => {
             <div id="clients-table">
                 <StickyHeadTable />
             </div>
+            
+            <CustomizedSnackbars />
+            
         </div>
     )
 

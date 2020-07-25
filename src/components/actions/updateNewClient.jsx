@@ -21,14 +21,14 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
             Axios.put(`http://localhost:4000/client/updateOwner/${clientName}/${ownerInput}`).then( res => {
                 console.log(res.data)
                 if(res.data.status === 'success'){
-                    alert(`${clientName} updated!\nMoved to ${ownerInput}`)
+                    props.clientsStore.setSnackBar('Moved Client Successfully!',`${clientName} new owner is ${ownerInput}`,'success',true)
                 } else {
-                    alert('seems to have a problem')
+                    props.clientsStore.setSnackBar('Error!','Seems to be a problem with moving this client, try again, otherwise contact us','error',true)
                 }
             }
                 )
         } else {
-            alert('pick a new owner or a clients name')
+            props.clientsStore.setSnackBar('Error!','Looks like you didn\'t pick a new owner or a client','error',true)
         }
     }
 
@@ -37,14 +37,14 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
         if(emailInput && clientName){
             Axios.put(`http://localhost:4000/client/sendEmail/${clientName}/${emailInput}`).then( res => {
                 if(res.data.status === 'success'){
-                    alert(`Successfully sent ${clientName} email from type ${emailInput}`)
+                    props.clientsStore.setSnackBar('Email Sent Successfully!',`Sent ${clientName} an email from type ${emailInput}`,'success',true)
                 } else {
-                    alert('seems to have a problem')
+                    props.clientsStore.setSnackBar('Error!','Seems to be a problem with sending an email to this client, try again, otherwise contact us','error',true)
                 }
             }
                 )
         } else {
-            alert('pick an email type or a clients name')
+            props.clientsStore.setSnackBar('Error!','Looks like you didn\'t pick an email type or a client','error',true)
         }
 
 
@@ -56,14 +56,14 @@ const UpdateNewClient = inject('clientsStore')(observer((props) => {
         if(clientName){
             Axios.put(`http://localhost:4000/client/declareSell/${clientName}`).then( res => {
                 if(res.data.status === 'success'){
-                    alert(`${clientName} updated! Congrats on the sale!`)
+                    props.clientsStore.setSnackBar('Congrats!',`${clientName} updated! Congrats on the sale!`,'success',true)
                 } else {
-                    alert('seems to have a problem')
+                    props.clientsStore.setSnackBar('Error!','Seems to be a problem with declaring a sale with this client, try again, otherwise contact us','error',true)
                 }
             }
                 )
         } else {
-            alert('pick a client name')
+            props.clientsStore.setSnackBar('Error!','Looks like you didn\'t pick a client','error',true)
         }
     }
 

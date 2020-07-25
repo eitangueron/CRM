@@ -1,10 +1,13 @@
 import { inject, observer } from 'mobx-react';
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label, LabelList, Cell,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+//    Legend,
+    ResponsiveContainer, Label,
+    //  LabelList,
+      Cell,
 } from 'recharts';
-import { useEffect } from 'react';
-import { useState } from 'react';
+
 
 const TopEmployeesGraph = inject('clientsStore')(observer((props) => {
     

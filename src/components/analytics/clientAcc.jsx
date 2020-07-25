@@ -1,18 +1,20 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
 import {
-  PieChart, Pie, Sector, Cell,
+  PieChart, Pie,
+  //  Sector,
+   Cell,
 } from 'recharts';
 import { Tooltip } from '@material-ui/core';
 
 const ClientAccPieChart = inject('clientsStore')(observer((props) => {
 
 
-    const clientsAmmount = props.clientsStore.clientsNum
+    // const clientsAmmount = props.clientsStore.clientsNum
 
-    const cleintsLastMonth = props.clientsStore.getClientsFromLastMonth
-    const clientsFromThisMonth = props.clientsStore.getClientsFromMonth
-    const earlierClients = clientsAmmount - cleintsLastMonth - clientsFromThisMonth
+    // const cleintsLastMonth = props.clientsStore.getClientsFromLastMonth
+    // const clientsFromThisMonth = props.clientsStore.getClientsFromMonth
+    // const earlierClients = clientsAmmount - cleintsLastMonth - clientsFromThisMonth
 
     const data = [
       { name: 'Group A', value: 400 },

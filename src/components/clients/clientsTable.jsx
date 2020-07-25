@@ -69,14 +69,14 @@ const StickyHeadTable = inject('clientsStore')(observer((props) => {
   const clientsDataFiltered = clientsStore.getFilteredClients
 
   const deleteClient = async (clientID) => {
-    let sure = window.confirm('Are you sure you want to delete this client?')
+    let sure = window.confirm('Are you sure you want to permanently delete this client?')
     if(sure) {
       await axios.delete(`http://localhost:4000/clients/${clientID}`).then(res => {
         if(res.data.status === 'success'){
           clientsStore.deleteClient(clientID)
-          alert('Deleted Successfully!')
+          props.clientsStore.setSnackBar('Deleted Client Successfully!','','success',true)
         } else {
-          alert(`Seems to be an error...\n${res.data}`)
+          props.clientsStore.setSnackBar('Error!','Seems to be an error we dont know why, please try again otherwise contact us','error',true)
         }
       })
     }
@@ -166,7 +166,7 @@ const StickyHeadTable = inject('clientsStore')(observer((props) => {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
-      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab} clientsStore={clientsStore}/> : null }
+      { updateClientTab ? <UpdateClient client={client} setUpdateClientTab={setUpdateClientTab} clientsStore={clientsStore} /> : null }
     </div>
   );
 }))

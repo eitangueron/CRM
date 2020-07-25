@@ -7810,7 +7810,6 @@ module.exports = clientsData
 // 	"Oman",
 // 	"Pakistan",
 // 	"Palau",
-// 	"Palestine, State of",
 // 	"Panama",
 // 	"Papua New Guinea",
 // 	"Paraguay",
@@ -7860,7 +7859,7 @@ module.exports = clientsData
 // 	"Syrian Arab Republic",
 // 	"Taiwan",
 // 	"Tajikistan",
-// 	"Tanzania, United Republic of",
+// 	"Tanzania",
 // 	"Thailand",
 // 	"Timor-Leste",
 // 	"Togo",
@@ -7874,10 +7873,9 @@ module.exports = clientsData
 // 	"Tuvalu",
 // 	"Uganda",
 // 	"Ukraine",
-// 	"United Arab Emirates",
+// 	"United Arab Emirates (UAE)",
 // 	"United Kingdom of Great Britain and Northern Ireland",
-// 	"United States Minor Outlying Islands",
-// 	"United States of America",
+// 	"United States of America (USA)",
 // 	"Uruguay",
 // 	"Uzbekistan",
 // 	"Vanuatu",
@@ -7890,7 +7888,6 @@ module.exports = clientsData
 // 	"Yemen",
 // 	"Zambia",
 // 	"Zimbabwe",
-// 	"Åland Islands"
 // ];
 
 // countryList.forEach( async c => {

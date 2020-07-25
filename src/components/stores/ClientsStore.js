@@ -1,5 +1,5 @@
 import { observable, action, computed } from 'mobx'
-import clientsData from '../../data'
+// import clientsData from '../../data'
 const axios = require('axios')
 
 export class ClientsStore {
@@ -9,14 +9,28 @@ export class ClientsStore {
        this.countriesList = []
        this.filterCategory = 'name'
        this.filterVal = ''
+       this.snackBarOpen = false
+       this.snackBarTextTitle = ''
+       this.snackBarTextContent = ''
+       this.snackBarType = ''
     }
 
     @observable clients
     @observable filterCategory
     @observable filterVal
     @observable countriesList
+    @observable snackBarOpen
+    @observable snackBarTextContent
+    @observable snackBarTextTitle
+    @observable snackBarType
 
-
+    @action setSnackBar(textTitle, textContnent, type, open){
+        this.snackBarTextTitle = textTitle
+        this.snackBarTextContent = textContnent
+        this.snackBarType = type
+        this.snackBarOpen = open
+    }
+ 
     getSurName(fullName){
         const name = fullName.split(' ')
         let surname = ''

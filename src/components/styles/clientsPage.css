@@ -36,17 +36,17 @@
     height:50vh;
     display: grid;
     position: absolute;
-    top: 25vh;
+    top: 30vh;
     left: 33vw ;
     /* calc(100vh - 400px); */
-    background: aliceblue;
+    background: #bdc3c7;
     opacity: 0.9;
     color: black
 }
 
 .update-box svg{
     cursor: pointer;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .update-box input{

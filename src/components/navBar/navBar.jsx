@@ -40,7 +40,7 @@ export default function ButtonAppBar() {
         <Toolbar>
             <Link to="/clients" onClick={()=>setCurrentPage('/clients')}>
                 <Typography variant="h6" className={classes.title} 
-                style={currentPage==='/clients' ? {color:'gold'}:null }>Clients</Typography>
+                style={currentPage==='/clients' || currentPage==='/' ? {color:'gold'}:null }>Clients</Typography>
             </Link>
             <Link to="/actions" onClick={()=>setCurrentPage("/actions")}>
               <Typography variant="h6" className={classes.title}

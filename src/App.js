@@ -11,9 +11,10 @@ import ButtonAppBar from './components/navBar/navBar';
 
 const App = inject('clientsStore')(observer((props) => {
   
-    useEffect(() => {
-      props.clientsStore.getClientsFromDB()
-      props.clientsStore.getCountries()
+  useEffect(() => {
+    props.clientsStore.getClientsFromDB()
+    props.clientsStore.getCountries()
+    // eslint-disable-next-line
       },[])
 
 
@@ -24,7 +25,7 @@ const App = inject('clientsStore')(observer((props) => {
            <ButtonAppBar />
            </div>
             <div id="routes">
-              {/* <Route path="/" exact component={clientsPage}/> */}
+              <Route path="/" exact component={clientsPage}/>
               <Route path="/clients" exact component={clientsPage} />
               <Route path="/actions" exact component={actionsPage} />
               <Route path="/analytics" exact component={analyticsPage} />

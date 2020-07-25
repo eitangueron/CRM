@@ -7,9 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import { observer, inject } from 'mobx-react'
 import Axios from 'axios';
-import { useEffect } from 'react';
-import { MenuItem } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+
 const capitalize = require('capitalize')
 const dateformat = require('dateformat')
 
@@ -23,18 +21,7 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
     const [ownerInput, setOwnerInput] =useState('')
     const owners = clientsStore.getOwners
     let countriesList = clientsStore.countriesList
-    // let countriesList = []
 
-
-        // const getCountries = async () => {
-        //     const countries = await Axios.get('http://localhost:4000/countries')
-        //     console.log(countries.data)
-        //     countriesList = countries.data
-        // }
-
-    // useEffect(() => {
-    //     countriesList = clientsStore.getCountries()
-    // }, [])
 
     const addUser = () => {
         if(firstNameInput && surNameInput && countryInput && ownerInput){
@@ -44,18 +31,18 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
             const date = new Date()
             Axios.post(`http://localhost:4000/clients/${name}/${country}/${owner}/${dateformat(date,'isoDate')}`).then( res => {
                 if(res.data.status==='success'){
-                    alert(`Added a new user: ${name} from ${country} to ${owner}`)
+                    props.clientsStore.setSnackBar('Added New Client Successfully!',`${name} from ${country} to ${owner}`,'success',true)
                     setFirstNameInput('')
                     setSurNameInput('')
                     setCountryInput('')
                     setOwnerInput('')
                     props.clientsStore.getClientsFromDB()
                 } else {
-                    alert ('seems to be a problem with adding a new client')
+                    props.clientsStore.setSnackBar('Error!','Seems to be a problem with adding a new client, try again, otherwise contact us','error',true)
                 }
             })
         } else {
-            alert('Please insert all 4 fields!')
+            props.clientsStore.setSnackBar('Error!','Please make sure you filled all text fields','error',true)
         }
     }
 
@@ -78,20 +65,6 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
             <h2>Add New Client:</h2>
             <TextField id="first-name-input-new-client" type="text" label="First Name" value={firstNameInput} onChange={(e)=>setFirstNameInput(e.target.value)}/> <br/>
             <TextField id="sur-name-input-new-client" type="text" label="Sur Name" value={surNameInput} onChange={(e)=>setSurNameInput(e.target.value)}/> <br/>
-            {/* <TextField id="country-input-new-client" type="text" label="Country" value={countryInput} onChange={(e)=>setCountryInput(e.target.value)}/> <br/> */}
-
-            {/* <Autocomplete
-                id="country-input-new-client"
-                options={countriesList}
-                getOptionLabel={(option) => option.name}
-                style={{ width: 300 }}
-                value={countryInput}
-                onChange={(e, newvalue) => {
-                    debugger
-                    setCountryInput(e.target.innerText);
-                }}
-                renderInput={(params) => <TextField {...params} label="Country" />}
-            /> */}
 
             <FormControl className={classes.formControl}>
                 <InputLabel id="country-inputs-new-client">Country</InputLabel>

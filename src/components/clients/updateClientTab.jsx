@@ -3,6 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
+import { InputLabel } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import { inject, observer } from 'mobx-react';
 const axios = require('axios')
 const capitalize = require('capitalize')
 
@@ -33,12 +37,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function UpdateClient(props) {
+export default inject('clientsStore')(observer(function UpdateClient(props) {
     const classes = useStyles();
     const [nameInputBar, setNameInputBar] = useState(props.client.name)
     const [surNameInputBar, setSurNameInputBar] = useState(props.client.surName)
     const [countryInputBar, setCountryInputBar] = useState(props.client.country)
-    
+    // const [{text,type,open},setSnackBar] = useState('','',false)
+    let countriesList = props.clientsStore.countriesList
+
 
     const updateClientDB = async (clientId) => {
         if(nameInputBar && surNameInputBar && countryInputBar){
@@ -49,14 +55,15 @@ export default function UpdateClient(props) {
                 if(res.data.status === 'success'){
                     const clientData = {id:clientId, name:name, country:country}
                     props.clientsStore.updateClient(clientData)
-                    alert(`Updated client successfully!\n${res.data.name} from ${country}.\nID: ${res.data.id}`)
+                    props.clientsStore.setSnackBar(`Updated client successfully!`,`${res.data.name} from ${country}`,'success',true)
                 } else {
-                    alert(res.data)
+                    props.clientsStore.setSnackBar('Error!','Seems to be an error we dont know why, please try again otherwise contact us','error',true)
+                    // alert(res.data)
                 }
             })
             props.setUpdateClientTab(false)
         } else {
-            alert('Must enter name, sur name and country!')
+            props.clientsStore.setSnackBar('Error!','Please make sure you filled all text fields','error',true)
         }
     }
 
@@ -65,8 +72,16 @@ export default function UpdateClient(props) {
         <CancelPresentationIcon onClick={() => props.setUpdateClientTab(false)}/>  <br/>
         <TextField id="nameUpdateInput" label="Name" value={nameInputBar} onChange={(e)=>setNameInputBar(e.target.value)}  className={classes.inputTab}/> <br/>
         <TextField id="surNameUpdateInput" label="Sur Name" value={surNameInputBar} onChange={(e)=>setSurNameInputBar(e.target.value)} className={classes.inputTab}/> <br/>
-        <TextField id="countryUpdateInput" label="Country" value={countryInputBar} onChange={(e)=>setCountryInputBar(e.target.value)} className={classes.inputTab}/> <br/>
+        {/* <TextField id="countryUpdateInput" label="Country" value={countryInputBar} onChange={(e)=>setCountryInputBar(e.target.value)} className={classes.inputTab}/> <br/> */}
+        <FormControl className={classes.inputTab}>
+                <InputLabel id="countryUpdateInput-label">Country</InputLabel>
+                <Select labelId="countryUpdateInput-label" id="countryUpdateInput" 
+                value={countryInputBar} onChange={(e)=>setCountryInputBar(e.target.value)}>
+                   {countriesList.map( c =>  <option value={c.name}>{c.name}</option> )}
+                </Select>
+            </FormControl>
+
         <Button variant="contained" color="primary" className={classes.button} onClick={()=>updateClientDB(props.client.id)}>Update</Button>
       </div>
   );
-}
+}))
