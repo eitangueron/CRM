@@ -10,6 +10,7 @@ const db = new Sequelize('mysql://bf7de9fd81a34a:1d8826be@eu-cdbr-west-03.cleard
 
 const insertDummyData = require('../src/insertingData')
 insertDummyData()
+
 // app.use(function (req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*')
 //     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
@@ -19,7 +20,6 @@ insertDummyData()
 // })
 
 const publicPath = path.join(__dirname, '..', 'build');
-console.log(__dirname)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
