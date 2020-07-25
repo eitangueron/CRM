@@ -7599,16 +7599,12 @@ const clientsData = [
       const countryID = country[0].id
       return countryID
     }
-    // // geCountryId(clientsData[11])
     
     const getEmailType = async (user) => {
       const [email] = await db.query(`SELECT id FROM email_types WHERE e_type='${user.emailType}'`)
       const emailID = email[0].id
       return emailID
     }
-    
-    // // getEmailType(clientsData[0])
-    // // getEmailType(clientsData[1])
     
     const getOwner = async (user) => {
       const [owner] = await db.query(`SELECT id FROM owners WHERE name='${user.owner}'`)

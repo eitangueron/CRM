@@ -7,10 +7,10 @@ USE crm_project;
 --     name VARCHAR(20)
 -- );
 
--- CREATE TABLE email_types (
---     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
---     e_type VARCHAR(20)
--- );
+CREATE TABLE email_types (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    e_type VARCHAR(20)
+);
 
 -- CREATE TABLE countries(
 --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

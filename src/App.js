@@ -14,7 +14,6 @@ const App = inject('clientsStore')(observer((props) => {
   useEffect(() => {
     props.clientsStore.getClientsFromDB()
     props.clientsStore.getCountries()
-    props.clientsStore.getOwnersFromDB()
     // eslint-disable-next-line
       },[])
 

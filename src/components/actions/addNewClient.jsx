@@ -22,10 +22,9 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
     const [surNameInput, setSurNameInput] =useState('')
     const [countryInput, setCountryInput] =useState('')
     const [ownerInput, setOwnerInput] =useState('')
-    let owners = clientsStore.owners
+    const owners = clientsStore.getOwners
     let countriesList = clientsStore.countriesList
 
-    
     const addUser = () => {
         if(firstNameInput && surNameInput && countryInput && ownerInput){
             const name = capitalize(firstNameInput) + ' ' + capitalize(surNameInput)
