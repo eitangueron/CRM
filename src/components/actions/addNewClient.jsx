@@ -22,7 +22,7 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
     const [surNameInput, setSurNameInput] =useState('')
     const [countryInput, setCountryInput] =useState('')
     const [ownerInput, setOwnerInput] =useState('')
-    const owners = clientsStore.getOwners
+    let owners = clientsStore.owners
     let countriesList = clientsStore.countriesList
 
     

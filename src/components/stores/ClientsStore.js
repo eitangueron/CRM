@@ -8,6 +8,7 @@ export class ClientsStore {
     constructor() {
        this.clients = []
        this.countriesList = []
+       this.owners = []
        this.filterCategory = 'name'
        this.filterVal = ''
        this.snackBarOpen = false
@@ -109,8 +110,14 @@ export class ClientsStore {
         const owners = {}
         this.clients.forEach( c => !owners[c.owner] ? owners[c.owner]=c.owner : null)
         return Object.values(owners)
-     }
+    }
+    
+    @action async getOwnersFromDB (){
+        axios.get(`${this.API_URL}owners`).then(res => {
 
+            this.owners = this.modifyClients(res.data)
+        })
+    }
 
     @computed get getOwnersSalesData(){
         const ownersSales = {}

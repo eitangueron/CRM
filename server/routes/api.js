@@ -25,6 +25,11 @@ router.get('/clients', async function(req,res){
     }
 })
 
+router.get('/owners', async function(req,res){
+    const [owners] = await db.query(`SELECT name FROM owners`)
+    res.send(owners)
+})
+
 router.get('/countries', async function(req,res){
     const [countries] = await db.query(`SELECT name FROM countries`)
     res.send(countries)

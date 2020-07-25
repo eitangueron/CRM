@@ -306,7 +306,7 @@ const insertDummyData = async () => {
         //////////    inserting countries:
 
         countryList.forEach( async c => {
-            await db.query(`INSERT INTO countries VALUES(null,'${c}')`)
+            await db.query(`INSERT INTO countries VALUES(null,"${c}");`)
           })
         
         // const countries = {}
@@ -327,7 +327,7 @@ const insertDummyData = async () => {
         
         const emailTypes = ['A', 'B', 'C', 'D', 'null']
         
-        emailTypes.forEach( e => console.log(`INSERT INTO email_types VALUES (null, '${e}');`) )
+        emailTypes.forEach( e => db.query(`INSERT INTO email_types VALUES (null, '${e}');`) )
         
         // db.query(`INSERT INTO email_types VALUES (null, 'null')`)
 

@@ -7588,9 +7588,42 @@ const clientsData = [
       "sold": true,
       "owner": "Emily Durham",
       "country": "France"
-    }
-  ]
+    }]
 
+    const Sequelize = require('sequelize')
+    const db = new Sequelize('mysql://root:1234@localhost/crm_project')
+    const dateFormat = require('dateformat')
+
+    const geCountryId = async (user) => {
+      const [country] = await db.query(`SELECT id FROM countries WHERE name='${user.country}'`)
+      const countryID = country[0].id
+      return countryID
+    }
+    // // geCountryId(clientsData[11])
+    
+    const getEmailType = async (user) => {
+      const [email] = await db.query(`SELECT id FROM email_types WHERE e_type='${user.emailType}'`)
+      const emailID = email[0].id
+      return emailID
+    }
+    
+    // // getEmailType(clientsData[0])
+    // // getEmailType(clientsData[1])
+    
+    const getOwner = async (user) => {
+      const [owner] = await db.query(`SELECT id FROM owners WHERE name='${user.owner}'`)
+      const ownerID = owner[0].id
+      return ownerID
+    }
+    
+    clientsData.forEach( async c => {
+
+      const ownerID = await getOwner(c)
+      const emailID = await getEmailType(c)
+      const countryID = await geCountryId(c)
+      const date = dateFormat(c.firstContact,'isoDate')
+      await db.query(`INSERT INTO clients VALUES(null, '${c.name}', '${date}', ${emailID}, ${c.sold}, ${ownerID}, ${countryID});`)
+    })
 
 
 module.exports = clientsData
