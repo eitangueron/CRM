@@ -2,7 +2,6 @@ const clientsData = require('./data')
 const Sequelize = require('sequelize')
 // const db = new Sequelize('mysql://root:1234@localhost/crm_project')
 const db = new Sequelize('mysql://bf7de9fd81a34a:1d8826be@eu-cdbr-west-03.cleardb.net/heroku_026d942682a000c?reconnect=true')
-const clientsData = require('../src/data')
 
 const countryList = [
 	"Afghanistan",
