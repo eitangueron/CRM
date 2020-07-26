@@ -53,7 +53,13 @@ export default inject('clientsStore')(observer(function UpdateClient(props) {
         if(nameInputBar && surNameInputBar && countryInputBar){
             const name = capitalize(nameInputBar) + ' ' + capitalize(surNameInputBar)
             const country= capitalize(countryInputBar)
-            await axios.put(`${API_URL}clients/${parseInt(clientId)}/${name}/${country}`)
+            const clientsUpdatedInfo = {
+                id:parseInt(clientId),
+                name:name,
+                country:country
+            }
+            // ${parseInt(clientId)}/${name}/${country}
+            await axios.put(`${API_URL}clients/`,clientsUpdatedInfo)
             .then( res => {
                 if(res.data.status === 'success'){
                     const clientData = {id:clientId, name:name, country:country}

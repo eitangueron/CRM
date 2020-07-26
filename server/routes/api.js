@@ -7,7 +7,7 @@ const db = new Sequelize('mysql://bf7de9fd81a34a:1d8826be@eu-cdbr-west-03.cleard
 // const moment = require('moment')
 
 
-router.get('/clients', async function(req,res){
+router.get('/allClients', async function(req,res){
     try{
         const [clients] = await db.query(
             `SELECT clients.id AS _id, clients.name, firstContact, sold,
@@ -17,7 +17,6 @@ router.get('/clients', async function(req,res){
             AND owners.id=clients.c_owner
             AND countries.id=clients.country
             ORDER BY clients.name`)
-        // console.log(clients)
         res.send(clients)
     }   
     catch (err){
@@ -35,12 +34,12 @@ router.get('/countries', async function(req,res){
     res.send(countries)
 })
 
-router.post('/clients/:name/:country/:owner/:date', async function(req,res){
+router.post('/clients', async function(req,res){
     try{
-        const [country] = await db.query(`SELECT id FROM countries WHERE name='${req.params.country}'`)
-        const [owner] = await db.query(`SELECT id FROM owners WHERE name='${req.params.owner}'`)
+        const [country] = await db.query(`SELECT id FROM countries WHERE name='${req.body.country}'`)
+        const [owner] = await db.query(`SELECT id FROM owners WHERE name='${req.body.owner}'`)
         await db.query(`INSERT INTO clients 
-        VALUES(null,'${req.params.name}', '${req.params.date}', '5', 0, '${owner[0].id}', ${country[0].id})`)
+        VALUES(null,'${req.body.name}', '${req.body.date}', '5', 0, '${owner[0].id}', ${country[0].id})`)
         // .then(res => console.log(res))
         res.send({status:'success' })
         }
@@ -49,20 +48,18 @@ router.post('/clients/:name/:country/:owner/:date', async function(req,res){
         }
 })
 
-router.put('/clients/:id/:name/:country', async function(req,res){
+router.put('/clients', async function(req,res){
     try{
         const [country] = await db.query(`
         SELECT id FROM countries
-        WHERE name='${req.params.country}'`)
+        WHERE name='${req.body.country}'`)
         const countryID = country[0].id
         await db.query(`
                         UPDATE clients
-                        SET name = '${req.params.name}', country = ${countryID}
-                        WHERE id= ${req.params.id};`
+                        SET name = '${req.body.name}', country = ${countryID}
+                        WHERE id= ${req.body.id};`
                         )
-        // console.log(newClient)
-        res.send({status:'success',name:req.params.name, country:countryID, id:parseInt(req.params.id)})
-        // res.send(`Updated client successfully!\n${req.params.name} from ${req.params.country}.\nID:${req.params.id}`)
+        res.send({status:'success',name:req.body.name, country:countryID, id:parseInt(req.body.id)})
     }
     catch (err){
         res.send(`seems like there was an error with the update:\n${err}`)
@@ -96,14 +93,14 @@ const getSurName = (fullName) => {
     return surname
 } 
 
-router.put('/client/declareSell/:name',async function(req,res){
+router.put('/client/declareSell',async function(req,res){
     // const name = req.params.name
     // const firstName = name.split(' ')[0]
     // const surName = getSurName(name)
     try{
         await db.query(`UPDATE clients
                     SET sold = 1
-                    WHERE name= '${req.params.name}';`
+                    WHERE name= '${req.body.clientName}';`
                 )
         res.send({status:'success'})
     }
@@ -113,12 +110,12 @@ router.put('/client/declareSell/:name',async function(req,res){
     
 })
 
-router.put('/client/updateOwner/:clientName/:newOwner',async function(req,res){
+router.put('/client/updateOwner',async function(req,res){
     try{
-        const [owner] = await db.query(`SELECT id FROM owners WHERE name='${req.params.newOwner}'`)
+        const [owner] = await db.query(`SELECT id FROM owners WHERE name='${req.body.newOwner}'`)
         await db.query(`UPDATE clients
                     SET c_owner = ${owner[0].id}
-                    WHERE name = '${req.params.clientName}';`
+                    WHERE name = '${req.body.clientName}';`
                 )
         res.send({status:'success'})
     }
@@ -127,12 +124,12 @@ router.put('/client/updateOwner/:clientName/:newOwner',async function(req,res){
     }
 })
 
-router.put('/client/sendEmail/:clientName/:emailType',async function(req,res){
+router.put('/client/sendEmail',async function(req,res){
     try{
-        const [email] = await db.query(`SELECT id FROM email_types WHERE e_type='${req.params.emailType}'`)
+        const [email] = await db.query(`SELECT id FROM email_types WHERE e_type='${req.body.emailType}'`)
         await db.query(`UPDATE clients
                     SET emailType = ${email[0].id}
-                    WHERE name = '${req.params.clientName}';`
+                    WHERE name = '${req.body.clientName}';`
                 )
         res.send({status:'success'})
     }
@@ -140,26 +137,6 @@ router.put('/client/sendEmail/:clientName/:emailType',async function(req,res){
         res.send({status:'error', err})
     }
 })
-
-
-// const test = async (req,res) => {
-//      try{
-//         const [clients] = await db.query(`SELECT clients.id, clients.name, firstContact, sold,
-//         e_type AS emailType, owners.name AS owner, countries.name AS country
-//         FROM clients, email_types, owners, countries
-//         WHERE clients.emailType=email_types.id
-//         AND owners.id=clients.c_owner
-//         AND countries.id=clients.country`)
-//         console.log(clients)
-//         // res.send(clients)
-//         }   
-//         catch (err){
-//         res.send(err)
-//         }
-// }
-
-// test()
-
 
 
 

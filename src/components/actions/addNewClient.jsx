@@ -31,7 +31,14 @@ const AddNewAclient = inject('clientsStore')(observer((props) => {
             const country = capitalize(countryInput)
             const owner = capitalize(ownerInput)
             const date = new Date()
-            Axios.post(`${API_URL}clients/${name}/${country}/${owner}/${dateformat(date,'isoDate')}`).then( res => {
+            const newClientsData = {
+                name:name,
+                country:country,
+                owner:owner,
+                date:dateformat(date,'isoDate')
+            }
+
+            Axios.post(`${API_URL}clients/`,newClientsData).then( res => {
                 if(res.data.status==='success'){
                     props.clientsStore.setSnackBar('Added New Client Successfully!',`${name} from ${country} to ${owner}`,'success',true)
                     setFirstNameInput('')
