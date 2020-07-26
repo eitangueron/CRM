@@ -62,7 +62,7 @@ export class ClientsStore {
     
 
     @action async getClientsFromDB (){
-        axios.get(`${this.API_URL}clients`).then(res => {
+        axios.get(`${this.API_URL}allClients`).then(res => {
 
             this.clients = this.modifyClients(res.data)
         })

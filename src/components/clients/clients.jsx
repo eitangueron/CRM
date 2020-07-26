@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { observer, inject } from 'mobx-react'
 // import clientsData from '../../data'
 // inject("ClientsDATA")
@@ -9,6 +9,11 @@ import CustomizedSnackbars from '../snackbar/snackBar';
 const clientsPage =  inject('clientsStore')(observer((props) => {
     
     const clientsStore = props.clientsStore
+    
+    useEffect(() => {
+        props.clientsStore.getClientsFromDB()
+        // eslint-disable-next-line
+          },[])
 
     return (
         <div id="clients-page">
