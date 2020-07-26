@@ -29,7 +29,7 @@ Oherwise:
 ### Client List
 An overview of all your clients. You can filter by name, the different owners, emails, countries & by clients who bought our product. A client can be double clicked to pull up a popup and update the clients basic info.
 
-<p align="center"><img src="imagesForREADME/clientsPage.png" width="300" /></p>
+<p align="center"><img src="imagesForREADME/clientsPage.png" width="500" /></p>
 
 
 ### Add or Update Client
@@ -38,12 +38,12 @@ In order to add a new client fill out the inputs and then click *add*.
 In order to update a clients info pick a client by name, enter the new info and excute accordingly.
 
 When adding/updating a snackbar will popup to confirm success / describe the error.
-<p align="center"><img src="imagesForREADME/actionsPage.png" width="300" /></p>
+<p align="center"><img src="imagesForREADME/actionsPage.png" width="500" /></p>
 
 ### Analytics Dashboard
 View a report of all the metrics regarding your clients.
 Notice that the sales graph is dynamic to the dropdown bar value.
-<p align="center"><img src="imagesForREADME/analyticsPage.png" width="300" /></p>
+<p align="center"><img src="imagesForREADME/analyticsPage.png" width="500" /></p>
 
 ## Techstack
 1. React, MobX, Recharts, Material-UI and Axios.
