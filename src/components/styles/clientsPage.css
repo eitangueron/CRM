@@ -39,7 +39,8 @@
     top: 30vh;
     left: 33vw ;
     /* calc(100vh - 400px); */
-    background: #bdc3c7;
+    /* background: #bdc3c7; */
+    background: #DDDDDD;
     opacity: 0.9;
     color: black
 }

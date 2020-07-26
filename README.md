@@ -1,68 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CRM 
 
-## Available Scripts
+CRM is a Client Ralationship Management system built with React. It includes a graphic analytics dashboard for company reports.
 
-In the project directory, you can run:
+Demo: [https://eitan-crm.herokuapp.com/](https://eitan-crm.herokuapp.com/)
 
-### `npm start`
+## Table Of Contents
+- [CRM](#CRM)
+  * [Running the project](#running-the-project)
+  * [Screenshots](#screenshots)
+    + [Client List](#client-list)
+    + [Add or Update Client](#add-or-update-client)
+    + [Analytics Dashboard](#analytics-dashboard)
+  * [Tech Stack](#tech-stack)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Running the project
+Preferably check the demo link :)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Oherwise:
 
-### `npm test`
+1. Clone the repo.
+2. Run `npm install`.
+3. Run `npm run build`
+4. Run `npm start`.
+5. Navigate to `http://localhost:4000`.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
 
-### `npm run build`
+### Client List
+An overview of all your clients. You can filter by name, the different owners, emails, countries & by clients who bought our product. A client can be double clicked to pull up a popup and update the clients basic info.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="center"><img src="imagesForREADME/clientsPage.png" width="300" /></p>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Add or Update Client
+In order to add a new client fill out the inputs and then click *add*.
 
-### `npm run eject`
+In order to update a clients info pick a client by name, enter the new info and excute accordingly.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+When adding/updating a snackbar will popup to confirm success / describe the error.
+<p align="center"><img src="imagesForREADME/actionsPage.png" width="300" /></p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Analytics Dashboard
+View a report of all the metrics regarding your clients.
+Notice that the sales graph is dynamic to the dropdown bar value.
+<p align="center"><img src="imagesForREADME/analyticsPage.png" width="300" /></p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Techstack
+1. React, MobX, Recharts, Material-UI and Axios.
+2. Express (Node.js), SQL (Sequelize). 

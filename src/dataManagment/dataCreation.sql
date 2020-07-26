@@ -7,10 +7,10 @@ USE crm_project;
 --     name VARCHAR(20)
 -- );
 
-CREATE TABLE email_types (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    e_type VARCHAR(20)
-);
+-- CREATE TABLE email_types (
+--     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--     e_type VARCHAR(20)
+-- );
 
 -- CREATE TABLE countries(
 --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -20,7 +20,6 @@ CREATE TABLE email_types (
 -- CREATE TABLE clients (
 --     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 --     name VARCHAR(20),
---     -- email VARCHAR(30),
 --     firstContact DATE,
 --     emailType INT, 
 --     sold BOOLEAN,
@@ -33,3 +32,4 @@ CREATE TABLE email_types (
 --     FOREIGN KEY (country) REFERENCES countries(id)
 -- );
 
+-- DROP TABLE countries;
