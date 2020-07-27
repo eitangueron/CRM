@@ -27,7 +27,7 @@ const SalesByCountryGraph = inject('clientsStore')(observer((props) => {
     // const data  = props.clientsStore.getSalesByCountry
 
     return (
-        <div id="salesByCountry" style={{textAlign:'center', display:'inline-block', marginLeft: '2%',  width:'58vw', height:'300px'}}>
+        <div id="salesByCountry" style={{textAlign:'center', display:'inline-block', marginLeft: '2vw',  width:'58vw', height:'300px'}}>
             <h3 style={{display:'inline'}}>Sales By </h3>
             <select onChange={(e)=>setCategory(e.target.value)}>
                 <option value="country">Country</option>
