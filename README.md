@@ -6,14 +6,14 @@ Demo: [https://eitan-crm.herokuapp.com/](https://eitan-crm.herokuapp.com/)
 
 ## Table Of Contents
 - [CRM](#CRM)
-  <!-- * [Running the project](#running-the-project) -->
+  * [Running the project](#running-the-project)
   * [Screenshots](#screenshots)
     + [Client List](#client-list)
     + [Add or Update Client](#add-or-update-client)
     + [Analytics Dashboard](#analytics-dashboard)
   * [Tech Stack](#tech-stack)
 
-<!-- ## Running the project
+## Running the project
 Preferably check the demo link :)
 
 Oherwise:
@@ -22,7 +22,7 @@ Oherwise:
 2. Run `npm install`.
 3. Run `npm run build`
 4. Run `npm start`.
-5. Navigate to `http://localhost:4000`. -->
+5. Navigate to `http://localhost:4000`.
 
 ## Screenshots
 
