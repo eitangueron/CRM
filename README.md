@@ -1,6 +1,6 @@
 # CRM 
 
-CRM is a Client Ralationship Management system built with React. It includes a graphic analytics dashboard for company reports.
+CRM is a Client Relationship Management system built with React. It includes a graphic analytics dashboard for company reports.
 
 Demo: [https://eitan-crm.herokuapp.com/](https://eitan-crm.herokuapp.com/)
 
@@ -16,7 +16,7 @@ Demo: [https://eitan-crm.herokuapp.com/](https://eitan-crm.herokuapp.com/)
 ## Running the project
 Preferably check the demo link :)
 
-Oherwise:
+Otherwise:
 
 1. Clone the repo.
 2. Run `npm install`.
@@ -35,9 +35,9 @@ An overview of all your clients. You can filter by name, the different owners, e
 ### Add or Update Client
 In order to add a new client fill out the inputs and then click *add*.
 
-In order to update a clients info pick a client by name, enter the new info and excute accordingly.
+In order to update a clients info pick a client by name, enter the new info and execute accordingly.
 
-When adding/updating a snackbar will popup to confirm success / describe the error.
+When adding/updating a snack bar will popup to confirm success / describe the error.
 <p align="center"><img src="imagesForREADME/actionsPage.png" width="500" /></p>
 
 ### Analytics Dashboard
@@ -45,6 +45,6 @@ View a report of all the metrics regarding your clients.
 Notice that the sales graph is dynamic to the dropdown bar value.
 <p align="center"><img src="imagesForREADME/analyticsPage.png" width="500" /></p>
 
-## Techstack
+## Tech stack
 1. React, MobX, Recharts, Material-UI and Axios.
 2. Express (Node.js), SQL (Sequelize). 
